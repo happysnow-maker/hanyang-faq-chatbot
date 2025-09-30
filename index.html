@@ -6,43 +6,25 @@
   <title>Hanyang Intercollege FAQ 검색</title>
   <meta name="description" content="한양인터칼리지 전공 선택·졸업요건 FAQ 검색기" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>">
-
   <style>
     :root{
-      --bg:#0b0c0f;
-      --panel:#111318;
-      --muted:#96a0b5;
-      --text:#e8ecf3;
-      --brand:#5aa9ff;
-      --chip:#1b2330;
-      --chip-on:#23405f;
-      --ok:#3ddc97;
-      --warn:#ffd166;
-      --radius:16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --bg:#0b0c0f; --panel:#111318; --muted:#96a0b5; --text:#e8ecf3;
+      --brand:#5aa9ff; --chip:#1b2330; --chip-on:#23405f;
+      --ok:#3ddc97; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.25);
     }
     @media (prefers-color-scheme:light){
       :root{
-        --bg:#f7f9fc;
-        --panel:#ffffff;
-        --muted:#64748b;
-        --text:#0f172a;
-        --brand:#2563eb;
-        --chip:#edf2f7;
-        --chip-on:#dbeafe;
-        --shadow: 0 10px 26px rgba(2,6,23,.08);
+        --bg:#f7f9fc; --panel:#ffffff; --muted:#64748b; --text:#0f172a;
+        --brand:#2563eb; --chip:#edf2f7; --chip-on:#dbeafe;
+        --shadow:0 10px 26px rgba(2,6,23,.08);
       }
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
     body{
       margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, '맑은 고딕', sans-serif;
-      background:linear-gradient(180deg, var(--bg), #0c1017 60%);
-      color:var(--text);
+      background:linear-gradient(180deg, var(--bg), #0c1017 60%); color:var(--text);
     }
-    .wrap{
-      max-width:980px; margin:40px auto; padding:0 20px;
-    }
+    .wrap{ max-width:980px; margin:40px auto; padding:0 20px; }
     .hero{
       background: radial-gradient(1200px 500px at 10% -20%, rgba(90,169,255,.25), transparent 60%),
                   radial-gradient(900px 400px at 100% 20%, rgba(61,220,151,.18), transparent 60%);
@@ -51,34 +33,27 @@
     }
     .hero h1{margin:0 0 8px; font-size: clamp(22px, 3.2vw, 34px)}
     .hero p{margin:0; color:var(--muted)}
-    .searchbar{
-      display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;
-    }
+    .searchbar{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
     .searchbar input[type="search"]{
-      flex:1; min-width:220px;
-      padding:14px 16px; border-radius: 12px; border:1px solid rgba(255,255,255,.1);
-      background: var(--panel); color:var(--text); outline:none;
-      box-shadow: inset 0 0 0 2px transparent; transition: box-shadow .2s,border-color .2s;
+      flex:1; min-width:220px; padding:14px 16px; border-radius: 12px;
+      border:1px solid rgba(255,255,255,.1); background: var(--panel); color:var(--text);
+      outline:none; box-shadow: inset 0 0 0 2px transparent; transition: box-shadow .2s,border-color .2s;
     }
     .searchbar input[type="search"]::placeholder{color:var(--muted)}
     .searchbar input[type="search"]:focus{box-shadow: inset 0 0 0 2px var(--brand)}
-    .searchbar button{
+    .btn{
       padding: 12px 16px; border-radius:12px; border:0; cursor:pointer;
       background: var(--brand); color:white; font-weight:600; box-shadow: var(--shadow);
     }
-    .toolbar{
-      margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;
-    }
+    .toolbar{ margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px; border-radius:999px; background:var(--chip);
       border:1px solid rgba(255,255,255,.08); color:var(--text); cursor:pointer;
-      user-select:none; transition: transform .05s ease, background .2s;
-      font-size:14px;
+      user-select:none; transition: transform .05s ease, background .2s; font-size:14px;
     }
     .chip[data-on="true"]{ background: var(--chip-on); border-color: rgba(80,150,255,.45)}
     .chip:active{ transform: scale(.98)}
-    .chip input{display:none}
     .panel{
       margin-top:26px; background:var(--panel); border-radius:var(--radius);
       border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
@@ -88,52 +63,37 @@
       border-bottom:1px dashed rgba(255,255,255,.1); color:var(--muted); font-size:14px;
     }
     .results{ padding: 10px 14px 6px; }
-    .card{
-      border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px;
-      margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
-    }
-    .qline{
-      display:flex; gap:10px; align-items:flex-start;
-    }
-    .qline h3{
-      margin:0; font-size:18px; line-height:1.35;
-    }
-    .badge{
-      font-size:12px; font-weight:700; color:#0a0a0a; background:var(--ok);
-      padding:4px 8px; border-radius:999px;
-    }
-    .alink{
-      margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:var(--brand);
-      cursor:pointer; font-size:13px;
-    }
+    .card{ border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px;
+           margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
+    .qline{ display:flex; gap:10px; align-items:flex-start; }
+    .qline h3{ margin:0; font-size:18px; line-height:1.35; }
+    .badge{ font-size:12px; font-weight:700; color:#0a0a0a; background:var(--ok); padding:4px 8px; border-radius:999px; }
+    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:var(--brand);
+            cursor:pointer; font-size:13px; }
     .answer{margin-top:10px; color:var(--text); line-height:1.6}
     .answer .hl{ background:rgba(255,230,150,.6); padding:0 2px; border-radius:4px}
     .tags{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px}
-    .tag{
-      font-size:12px; color:var(--muted); background: rgba(255,255,255,.06); padding:4px 8px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.06)
-    }
-    .empty{
-      padding:22px; color:var(--muted)
-    }
-    .footer{
-      margin: 20px 0 60px; color:var(--muted); font-size:13px; text-align:center;
-    }
+    .tag{ font-size:12px; color:var(--muted); background: rgba(255,255,255,.06); padding:4px 8px; border-radius:999px;
+          border:1px solid rgba(255,255,255,.06) }
+    .empty{ padding:22px; color:var(--muted) }
+    .footer{ margin: 20px 0 60px; color:var(--muted); font-size:13px; text-align:center; }
     .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero" role="search">
+    <section class="hero">
       <h1>한양인터칼리지 FAQ 검색</h1>
       <p>전공 선택 · 다(부)전공 · MSC · 프로젝트 · 졸업요건 등 핵심 질의응답을 키워드/태그로 빠르게 찾아보세요.</p>
 
-      <div class="searchbar">
+      <!-- 폼: Enter/버튼 모두 동작 -->
+      <form id="searchForm" class="searchbar" role="search">
         <label class="sr-only" for="q">검색어</label>
         <input id="q" type="search" placeholder="예) MSC 전공학점, 주전공 변경, 커리어개발2" autocomplete="off" />
-        <button id="clearBtn" title="검색 지우기">지우기</button>
-        <button id="shareBtn" title="현재 검색 링크 복사">링크 복사</button>
-      </div>
+        <button id="searchBtn" class="btn" type="submit" title="검색">검색</button>
+        <button id="clearBtn" class="btn" type="button" title="검색 지우기">지우기</button>
+        <button id="shareBtn" class="btn" type="button" title="현재 검색 링크 복사">링크 복사</button>
+      </form>
 
       <!-- 태그 필터 -->
       <div id="tagBar" class="toolbar" aria-label="태그 필터"></div>
@@ -151,9 +111,7 @@
   </div>
 
   <script>
-    // =========================
-    // 1) FAQ 데이터 + 태그
-    // =========================
+    // ----- 1) 데이터 -----
     const faqData = [
       { id:"1", q:"주전공이 한양인터칼리지일 때와 타 단과대학일 때 무엇이 달라지나요?",
         a:"한양인터칼리지 주전공은 1·2·3·4학년 프로젝트 모두 이수(2·3학년은 전공학점 인정). 타 단과대학 주전공은 1·4학년만 이수하며 2·3학년 프로젝트는 수강/장학 제외.",
@@ -236,31 +194,27 @@
         kw:["융합전자공학부","MSC","선형대수","공업수학","면제","전공기초필수"],
         tags:["#공대","#MSC","#전공기초필수"] },
     ];
-
-    // 모든 태그 목록(정렬)
     const allTags = Array.from(new Set(faqData.flatMap(x => x.tags))).sort((a,b)=>a.localeCompare(b,'ko'));
 
-    // =========================
-    // 2) DOM refs
-    // =========================
-    const qInput = document.getElementById('q');
+    // ----- 2) DOM -----
+    const qInput    = document.getElementById('q');
+    const searchForm= document.getElementById('searchForm');
+    const searchBtn = document.getElementById('searchBtn');
+    const clearBtn  = document.getElementById('clearBtn');
+    const shareBtn  = document.getElementById('shareBtn');
     const resultsEl = document.getElementById('results');
-    const countEl = document.getElementById('count');
-    const tagBar = document.getElementById('tagBar');
-    const clearBtn = document.getElementById('clearBtn');
-    const shareBtn = document.getElementById('shareBtn');
+    const countEl   = document.getElementById('count');
+    const tagBar    = document.getElementById('tagBar');
 
-    // =========================
-    // 3) 태그 UI 생성
-    // =========================
+    // ----- 3) 태그 UI -----
     const selectedTags = new Set();
     function renderTags(){
       tagBar.innerHTML = '';
       allTags.forEach(tag=>{
         const btn = document.createElement('button');
-        btn.className = 'chip';
-        btn.setAttribute('data-on', 'false');
-        btn.innerHTML = `<span>${tag}</span>`;
+        btn.className = 'chip'; btn.type='button';
+        btn.setAttribute('data-on', selectedTags.has(tag) ? 'true' : 'false');
+        btn.textContent = tag;
         btn.addEventListener('click', ()=>{
           if(selectedTags.has(tag)){ selectedTags.delete(tag); btn.setAttribute('data-on','false'); }
           else { selectedTags.add(tag); btn.setAttribute('data-on','true'); }
@@ -270,49 +224,38 @@
       });
     }
 
-    // =========================
-    // 4) 검색/스코어링
-    // =========================
+    // ----- 4) 검색/스코어링 -----
     const normalize = s => (s ?? '').toString().toLowerCase().replace(/\s+/g,' ').trim();
     function scoreEntry(entry, query){
       const nq = normalize(query);
-      if(!nq && selectedTags.size===0) return 1; // 아무 필터 없으면 모두 노출
+      if(!nq && selectedTags.size===0) return 1;
+      // 태그 AND
+      if(![...selectedTags].every(t => entry.tags.includes(t))) return 0;
+      if(!nq) return 1;
+
       let score = 0;
-      // 태그 필터: 모두 만족(AND)
-      const tagOk = [...selectedTags].every(t => entry.tags.includes(t));
-      if(!tagOk) return 0;
-
-      if(!nq) return 1; // 태그만 필터일 때 통과
-
-      // 키워드 기반
       const hay = normalize(entry.q + ' ' + entry.a + ' ' + entry.kw.join(' '));
-      // 정확/부분 일치
       if(hay.includes(nq)) score += 6;
       entry.kw.forEach(k=>{
         const nk = normalize(k);
         if(nk === nq) score += 5;
         else if(nk.includes(nq) || nq.includes(nk)) score += 3;
       });
-      // 토큰 매칭
       nq.split(' ').forEach(tok=>{
         if(tok.length>1 && hay.includes(tok)) score += 1;
       });
       return score;
     }
 
-    // 하이라이트
     function highlight(text, query){
       const nq = normalize(query);
       if(!nq) return text;
       const esc = nq.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      try{
-        return text.replace(new RegExp(`(${esc})`,'gi'), '<span class="hl">$1</span>');
-      }catch{ return text; }
+      try{ return text.replace(new RegExp(`(${esc})`,'gi'), '<span class="hl">$1</span>'); }
+      catch{ return text; }
     }
 
-    // =========================
-    // 5) 렌더링
-    // =========================
+    // ----- 5) 렌더 -----
     function render(list, query){
       resultsEl.innerHTML = '';
       if(list.length===0){
@@ -324,9 +267,7 @@
 
       for(const e of list){
         const card = document.createElement('article');
-        card.className = 'card';
-        card.id = `q${e.id}`;
-
+        card.className = 'card'; card.id = `q${e.id}`;
         card.innerHTML = `
           <div class="qline">
             <span class="badge">Q${e.id}</span>
@@ -336,8 +277,6 @@
           <div class="answer">${highlight(e.a, query)}</div>
           <div class="tags">${e.tags.map(t=>`<span class="tag">${t}</span>`).join(' ')}</div>
         `;
-
-        // 링크 복사
         card.querySelector('.alink').addEventListener('click', (ev)=>{
           const id = ev.currentTarget.getAttribute('data-id');
           const url = new URL(location.href);
@@ -349,35 +288,32 @@
           }else{
             url.searchParams.delete('tags');
           }
-          navigator.clipboard.writeText(url.toString()).then(()=>{
-            ev.currentTarget.textContent = '✅ 복사됨';
-            setTimeout(()=>{ ev.currentTarget.textContent='🔗 복사'; },1200);
-          });
+          // 클립보드 폴백
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url.toString()).then(()=>{
+              ev.currentTarget.textContent = '✅ 복사됨';
+              setTimeout(()=>{ ev.currentTarget.textContent='🔗 복사'; },1200);
+            });
+          } else {
+            window.prompt("아래 링크를 복사하세요:", url.toString());
+          }
         });
-
         resultsEl.appendChild(card);
       }
     }
 
-    // =========================
-    // 6) 상태 → 결과
-    // =========================
     function search(query){
-      // 스코어링 + 정렬
-      const ranked = faqData
+      return faqData
         .map(e => ({entry:e, score:scoreEntry(e, query)}))
         .filter(r => r.score > 0)
         .sort((a,b)=> b.score - a.score)
         .map(r => r.entry);
-      return ranked;
     }
 
     function update(pushState=true){
       const q = qInput.value;
       const list = search(q);
       render(list, q);
-
-      // 주소 반영
       if(pushState){
         const url = new URL(location.href);
         if(q.trim()) url.searchParams.set('q', q.trim()); else url.searchParams.delete('q');
@@ -387,63 +323,54 @@
       }
     }
 
-    // =========================
-    // 7) 이벤트
-    // =========================
-    let t=null;
+    // ----- 6) 초기화 & 이벤트 -----
+    function initFromQuery(){
+      const params = new URLSearchParams(location.search);
+      const q = params.get('q') || '';
+      qInput.value = q;
+      const tagQuery = params.get('tags');
+      if(tagQuery){ tagQuery.split(',').forEach(t=> selectedTags.add(t)); }
+    }
+
+    // 태그 렌더는 딱 1번
+    initFromQuery();
+    renderTags();
+    update(false);
+
+    // Enter/버튼 검색
+    searchForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      update();
+    });
+
+    // 입력 즉시 검색(원하면 주석)
     qInput.addEventListener('input', ()=>{
-      clearTimeout(t);
-      t = setTimeout(()=> update(), 140); // 디바운스
+      update();
     });
 
     clearBtn.addEventListener('click', ()=>{
       qInput.value = '';
       selectedTags.clear();
-      // 태그 토글 UI 초기화
-      [...tagBar.querySelectorAll('.chip')].forEach(el=> el.setAttribute('data-on','false'));
+      renderTags(); // 시각상태 초기화
       update();
     });
 
     shareBtn.addEventListener('click', ()=>{
       const url = new URL(location.href);
-      navigator.clipboard.writeText(url.toString()).then(()=>{
-        shareBtn.textContent='복사됨 ✅'; setTimeout(()=>shareBtn.textContent='링크 복사',1200);
-      });
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url.toString()).then(()=>{
+          shareBtn.textContent='복사됨 ✅'; setTimeout(()=>shareBtn.textContent='링크 복사',1200);
+        });
+      } else {
+        window.prompt("아래 링크를 복사하세요:", url.toString());
+      }
     });
 
-    // =========================
-    // 8) 초기화 (쿼리 파싱)
-    // =========================
-    function initFromQuery(){
-      const params = new URLSearchParams(location.search);
-      const q = params.get('q') || '';
-      qInput.value = q;
-
-      // 태그 미리 선택
-      const tagQuery = params.get('tags');
-      if(tagQuery){
-        tagQuery.split(',').forEach(t=> selectedTags.add(t));
-      }
-
-      // 태그 렌더 후 선택상태 반영
-      renderTags();
-      [...tagBar.children].forEach(chip=>{
-        const label = chip.textContent.trim();
-        if(selectedTags.has(label)) chip.setAttribute('data-on','true');
-      });
-
-      update(false);
-
-      // 해시 포커스(있다면)
-      if(location.hash){
-        const el = document.querySelector(location.hash);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
+    // 해시가 있다면 스크롤
+    if(location.hash){
+      const el = document.querySelector(location.hash);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
     }
-
-    // 최초 실행
-    renderTags();
-    initFromQuery();
   </script>
 </body>
 </html>
