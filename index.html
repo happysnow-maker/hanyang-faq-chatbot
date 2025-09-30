@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한양인터칼리지 전공선택 FAQ 챗봇</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .chat-container {
+            height: 500px;
+            overflow-y: auto;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-message {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-message strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .questions-grid {
+            padding: 30px;
+            background: white;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .questions-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .questions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .question-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .question-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+        }
+
+        .question-btn:active {
+            transform: translateY(0);
+        }
+
+        .search-container {
+            padding: 20px 30px;
+            background: white;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .welcome-message {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+        }
+
+        .welcome-message h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .clear-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 한양인터칼리지 전공선택 FAQ</h1>
+            <p>2025학번 학생들을 위한 졸업요건 및 전공선택 안내</p>
+        </div>
+
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message">
+                <h2>안녕하세요! 👋</h2>
+                <p>한양인터칼리지 전공선택과 졸업요건에 대해 궁금한 점이 있으신가요?<br>
+                아래 질문 중 하나를 선택하시거나, 직접 검색해보세요!</p>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="궁금한 내용을 검색해보세요... (예: 주전공, 졸업학점, 프로젝트)">
+        </div>
+
+        <div class="questions-grid">
+            <div class="questions-title">💡 자주 묻는 질문</div>
+            <div class="questions-container" id="questionsContainer"></div>
+            <button class="clear-btn" id="clearBtn">대화 초기화</button>
+        </div>
+    </div>
+
+    <script>
+        const faqData = [
+            {
+                q: "주전공이 한양인터칼리지일 때와 아닐 때의 차이점은?",
+                a: "학년별 필수 이수 프로젝트 교과목이 달라집니다.\n\n• 한양인터칼리지 주전공: 1, 2, 3, 4학년 프로젝트 교과목을 모두 이수 (2·3학년 프로젝트는 전공학점 인정)\n• 타 단과대학 주전공: 1학년, 4학년 프로젝트만 이수 (2·3학년 프로젝트 수강 불가, 프로젝트 장학금 지급 제외)"
+            },
+            {
+                q: "타 단과대학을 주전공으로 선택하면 그 학과 교양필수를 들어야 하나요?",
+                a: "아니요. 한양인터칼리지 학생은 어느 학과를 주전공으로 선택하더라도 1학년 필수이수요건(전공기초필수 및 교양필수)은 한양인터칼리지에서 지정한 1학년 교양필수 과목으로 지정됩니다.\n\n단, 선택한 주전공 학부(과)의 2~4학년 전공기초필수 과목은 반드시 이수해야 하며, 이는 주전공 이수학점(48학점)에 포함됩니다."
+            },
+            {
+                q: "공과대학·자연과학대학 전공 선택 시 기초과학 교과목 학점 인정은?",
+                a: "기초과학 교과목(MSC 교과목)은 선택한 주전공학과의 전공학점으로는 인정되지 않고 전체 졸업학점으로만 인정됩니다.\n\n다만, 기초과학 교과목이 아닌 일부 전공기초필수과목은 전공학점으로 인정됩니다."
+            },
+            {
+                q: "기초과학 교과목에는 어떤 과목들이 포함되나요?",
+                a: "다음 교과목들이 기초과학 교과목(MSC 교과목)에 포함됩니다:\n\n• 미분적분학\n• 일반화학및실험\n• 일반물리학및실험\n\n관련 교과목들입니다."
+            },
+            {
+                q: "커리어개발2는 어느 학과 개설 과목을 들어야 하나요?",
+                a: "교양필수 과목 중 커리어개발2 교과목은 선택한 주전공 학부(과)에서 개설한 과목을 수강하셔야 합니다."
+            },
+            {
+                q: "타 단과대학을 주전공으로 선택해도 인터칼리지 프로그램을 들어야 하나요?",
+                a: "네. 한양인터칼리지 소속 학생은 어떤 주전공을 선택하더라도, 반드시 한양인터칼리지학부 프로그램 교육과정 중 하나 이상을 부전공(24학점 이상) 이상으로 이수해야 합니다."
+            },
+            {
+                q: "주전공, 다중전공, 부전공의 최소 이수학점은?",
+                a: "최소 이수학점은 다음과 같습니다:\n\n• 주전공: 48학점\n• 다중전공(건축학부 외): 36학점 (200~300단위 21학점, 400단위 6학점 포함)\n• 다중전공(건축학부): 100학점 (100~300단위 60학점, 400단위 18학점 포함)\n• 프로그램 다중전공: 36학점 (400단위 6학점 포함)\n• 부전공(건축학부 외): 21학점 (200~400단위 12학점 포함)\n• 프로그램 부전공: 24학점 (단위 구분 없음)"
+            },
+            {
+                q: "인터칼리지 부전공을 마이크로전공으로 대체할 수 있나요?",
+                a: "아니요. 한양인터칼리지 부전공 대신 다중전공을 이수하면 졸업요건을 충족할 수 있습니다.\n\n하지만 마이크로전공(12학점)은 한양인터칼리지 부전공을 대체할 수 없습니다."
+            },
+            {
+                q: "인터칼리지 프로그램을 주전공으로 선택하면 추가 전공 이수가 필요한가요?",
+                a: "네. 한양인터칼리지 프로그램을 주전공으로 선택하는 경우에도 반드시 타 단과대학 학부(과) 또는 한양인터칼리지 내 다른 프로그램을 부전공 이상으로 이수해야 합니다."
+            },
+            {
+                q: "졸업 시 학위는 어떻게 표기되나요?",
+                a: "주전공을 선택한 단과대학과(부)의 명칭으로 학위가 수여되며, 이수한 부전공/다중전공은 졸업증명서에 함께 표기됩니다."
+            },
+            {
+                q: "주전공은 성적을 기준으로 경쟁을 거쳐 배정되나요?",
+                a: "아니요. 한양인터칼리지 학생은 입학 후 주전공 신청 자격을 충족 시 성적이나 경쟁률과 상관없이 자신이 원하는 학부(과)·전공을 자유롭게 선택할 수 있습니다.\n\n전공 계열(인문·사회·이공 등)에 제한이 없고, 지원 시 전원 선발됩니다."
+            },
+            {
+                q: "주전공 신청 자격은 어떻게 되나요?",
+                a: "2025학번 학생의 경우 주전공 신청 학기에 재학 중이며 누적 평점 평균이 2.0 이상이면 주전공 신청 자격이 주어집니다.\n\n1학년 공통 교육과정에서 F를 취득하더라도 누적 평점 평균이 2.0 이상이라면 주전공 선택 신청 자격이 주어지나, F를 취득한 한양인터칼리지 교양필수 과목은 졸업 전까지 재수강하여 반드시 학점을 취득해야 합니다."
+            },
+            {
+                q: "전공 선택이 불가능한 학과도 있나요?",
+                a: "네. 다음 학과들은 선택이 불가능합니다:\n\n• 의과대학\n• 간호학과\n• 사범대학\n• 음악대학\n• 예술·체육대학 내 개설 학부(과)\n• 산업체 계약학과(반도체공학과)"
+            },
+            {
+                q: "주전공은 몇 번까지 선택(변경)할 수 있나요?",
+                a: "한양인터칼리지 학생은 재학 중 총 2회 주전공을 선택할 수 있습니다.\n\n• 1차: 입학 후 2학기 말에 최초 주전공 선택\n• 2차: 최초 결정 이후, 졸업 전까지 한 번 변경 가능"
+            },
+            {
+                q: "졸업에 필요한 총 학점은 몇 학점인가요?",
+                a: "한양인터칼리지학부 학생의 졸업학점은 140학점입니다.\n\n이 중 주전공 48학점 이상, 교양필수 35학점, 필수 프로젝트 15학점, 핵심교양 4학점, 사회봉사 1학점, 커리어개발2 1학점이 포함됩니다."
+            },
+            {
+                q: "한양인터칼리지 1학년 공통 교육과정에는 무엇이 있나요?",
+                a: "1학년 공통 교육과정(교양필수 35학점)은 다음과 같습니다:\n\n• Systems Thinking and Design Thinking (1학기)\n• Make Core (2학기)\n• Algorithmic, Computational and Data Thinking (1, 2학기)\n• Calculus in Context (1, 2학기)\n• Unified Systems Science (1, 2학기)\n• Global Critical Anthropology (1, 2학기)\n• Life Project (1, 2학기)"
+            },
+            {
+                q: "프로젝트 교과목은 총 몇 학점인가요?",
+                a: "필수 프로젝트는 총 15학점입니다:\n\n• 1학년: 3학점 (전공학점 미포함)\n• 2학년: 3학점 (인터칼리지 주전공 시 전공학점 포함)\n• 3학년: 3학점 (인터칼리지 주전공 시 전공학점 포함)\n• 4학년: 12학점 (전공학점 미포함)\n\n단, 타 단과대학 주전공 선택 시 2·3학년 프로젝트는 이수하지 않습니다."
+            },
+            {
+                q: "전공 400단위 과목은 몇 학점 이상 들어야 하나요?",
+                a: "주전공의 경우 전공 400단위 과목을 6학점 이상 이수해야 합니다.\n\n4학년 필수 프로젝트 교과목(12학점)을 포함하면 총 18학점이 됩니다."
+            },
+            {
+                q: "2025학년도 주전공 선택 일정은 어떻게 되나요?",
+                a: "2025학년도 주전공 선택 일정은 다음과 같습니다:\n\n• 9월 18일~22일: 전공설명회 수요조사\n• 10월 중: 전공설명회\n• 10월 30일: 주전공 선택 신청 시작\n• 11월 5일: 주전공 선택 신청 마감\n• 11월 10일~14일: 다전공 선택 신청\n• 2026년 1월: 주전공·다전공 확정"
+            },
+            {
+                q: "선택 가능한 단과대학은 어디인가요?",
+                a: "다음 단과대학에서 주전공을 선택할 수 있습니다:\n\n• 한양인터칼리지\n• 경영대학\n• 경제금융대학\n• 공과대학 (반도체공학과 제외)\n• 국제대학\n• 생활과학대학\n• 사회과학대학\n• 자연과학대학\n• 정책과학대학\n• 산업융합학부\n• 인문과학대학\n\n별도 인원 제한은 없습니다."
+            }
+        ];
+
+        const chatContainer = document.getElementById('chatContainer');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
+
+        function displayQuestion(index) {
+            const faq = faqData[index];
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.innerHTML = `
+                <div class="bot-message">
+                    <strong>Q: ${faq.q}</strong>
+                    <div>${faq.a.replace(/\n/g, '<br>')}</div>
+                </div>
+            `;
+            
+            const welcomeMsg = chatContainer.querySelector('.welcome-message');
+            if (welcomeMsg) {
+                welcomeMsg.remove();
+            }
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function renderQuestions(searchTerm = '') {
+            questionsContainer.innerHTML = '';
+            
+            const filteredFaqs = faqData.filter((faq, index) => {
+                const searchLower = searchTerm.toLowerCase();
+                return faq.q.toLowerCase().includes(searchLower) || 
+                       faq.a.toLowerCase().includes(searchLower);
+            });
+
+            filteredFaqs.forEach((faq) => {
+                const index = faqData.indexOf(faq);
+                const btn = document.createElement('button');
+                btn.className = 'question-btn';
+                btn.textContent = faq.q;
+                btn.onclick = () => displayQuestion(index);
+                questionsContainer.appendChild(btn);
+            });
+
+            if (filteredFaqs.length === 0) {
+                questionsContainer.innerHTML = '<p style="color: #999; text-align: center; grid-column: 1/-1;">검색 결과가 없습니다.</p>';
+            }
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            renderQuestions(e.target.value);
+        });
+
+        clearBtn.addEventListener('click', () => {
+            chatContainer.innerHTML = `
+                <div class="welcome-message">
+                    <h2>안녕하세요! 👋</h2>
+                    <p>한양인터칼리지 전공선택과 졸업요건에 대해 궁금한 점이 있으신가요?<br>
+                    아래 질문 중 하나를 선택하시거나, 직접 검색해보세요!</p>
+                </div>
+            `;
+            searchInput.value = '';
+            renderQuestions();
+        });
+
+        renderQuestions();
+    </script>
+</body>
+</html>
