@@ -1,8 +1,4 @@
-<!-- version: 2025-10-01d | Hanyang Intercollege FAQ
-     - Navy 테마
-     - 상단 좌측 로고(hyuic.png), 우측 히어로 일러스트(intercollege-hero.png) 반영
-     - 아코디언 기본 + 전역 블러 토글 유지
-     - 전공기초필수 묶음 Q9~, 프로젝트 세부 Q1~8 -->
+<!-- version: 2025-10-01e | Hanyang Intercollege FAQ (Navy + White Search) -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,9 +9,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
-
-  <!-- Favicon을 로고로 -->
-  <link rel="icon" type="image/png" href="assets/hyuic.png">
+  <link rel="icon" type="image/png" href="assets/hyuic.png"/>
 
   <style>
     /* ===== Navy Theme ===== */
@@ -53,47 +47,27 @@
 
     /* ===== HERO ===== */
     .hero{
-      position:relative;
       display:grid; grid-template-columns: 1fr minmax(220px,340px);
       gap:18px;
       background: linear-gradient(180deg, var(--panel), var(--panel-2) 80%);
       padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.06); backdrop-filter: blur(6px);
-      overflow:hidden;
     }
     .hero-illus{
       display:flex; align-items:center; justify-content:center;
       border-radius:14px;
       background: radial-gradient(140px 120px at 40% 40%, rgba(126,164,255,.15), transparent 70%);
     }
-    .hero-illus img{
-      width:100%; max-width:320px; height:auto; object-fit:contain; display:block;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,.3));
-    }
-    .brandbox{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 4px;
-    }
-    .logo{
-      width:46px; height:46px; border-radius:10px; background:#11214a;
-      border:1px solid rgba(255,255,255,.10); display:flex; align-items:center; justify-content:center;
-      overflow:hidden;
-    }
+    .hero-illus img{ width:100%; max-width:320px; height:auto; object-fit:contain; display:block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.3)); }
+    .brandbox{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 4px; }
+    .logo{ width:46px; height:46px; border-radius:10px; background:#11214a; border:1px solid rgba(255,255,255,.10); display:flex; align-items:center; justify-content:center; overflow:hidden; }
     .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .badgeH{ font-size:12px; font-weight:700; color:#fff;
-             background:linear-gradient(135deg, var(--brand), var(--brand-2));
-             padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.15) }
+    .badgeH{ font-size:12px; font-weight:700; color:#fff; background:linear-gradient(135deg, var(--brand), var(--brand-2)); padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.15) }
     .hero h1{margin:0; font-size: clamp(22px, 3.2vw, 34px)}
     .hero p{margin:4px 0 0; color:var(--muted)}
 
     /* ===== Controls ===== */
     .searchbar{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
-    .searchbar input[type="search"]{
-      flex:1; min-width:240px; padding:14px 16px; border-radius: 12px;
-      border:1px solid rgba(255,255,255,.08); background: #0c1730; color:var(--text);
-      outline:none; box-shadow: inset 0 0 0 2px transparent; transition: box-shadow .2s,border-color .2s;
-    }
-    .searchbar input[type="search"]::placeholder{color:var(--muted)}
-    .searchbar input[type="search"]:focus{box-shadow: inset 0 0 0 2px var(--brand)}
     .btn{
       padding: 12px 16px; border-radius:12px; border:0; cursor:pointer;
       background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:white; font-weight:600; box-shadow: var(--shadow);
@@ -109,25 +83,18 @@
     .chip:active{ transform: scale(.98)}
 
     /* ===== List ===== */
-    .panel{ margin-top:24px; background:var(--panel); border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
-    .meta{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
-      border-bottom:1px dashed rgba(255,255,255,.12); color:var(--muted); font-size:14px; }
+    .panel{ margin-top:24px; background:var(--panel); border-radius:var(--radius); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
+    .meta{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px dashed rgba(255,255,255,.12); color:var(--muted); font-size:14px; }
     .results{ padding: 10px 14px 6px; }
-    .card{ border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px;
-      margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
+    .card{ border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px; margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
     .qline{ display:flex; gap:10px; align-items:flex-start; }
     .qline h3{ margin:0; font-size:18px; line-height:1.35; }
-    .badge{ font-size:12px; font-weight:700; color:#fff;
-            background:linear-gradient(135deg, var(--brand), var(--brand-2));
-            padding:4px 8px; border-radius:999px; }
-    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:#7ea4ff;
-            cursor:pointer; font-size:13px; }
+    .badge{ font-size:12px; font-weight:700; color:#fff; background:linear-gradient(135deg, var(--brand), var(--brand-2)); padding:4px 8px; border-radius:999px; }
+    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:#7ea4ff; cursor:pointer; font-size:13px; }
     .answer{margin-top:10px; color:var(--text); line-height:1.65}
     .answer .hl{ background: transparent; box-shadow: inset 0 -0.35em 0 var(--hl); border-radius:2px; }
     .tags{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px}
-    .tag{ font-size:12px; color:#bcd0ff; background: rgba(22,42,92,.6); padding:4px 8px; border-radius:999px;
-          border:1px solid rgba(147,176,255,.15) }
+    .tag{ font-size:12px; color:#bcd0ff; background: rgba(22,42,92,.6); padding:4px 8px; border-radius:999px; border:1px solid rgba(147,176,255,.15) }
     .empty{ padding:22px; color:var(--muted) }
     .footer{ margin: 20px 0 60px; color:#b1badd; font-size:13px; text-align:center; }
     .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
@@ -138,7 +105,23 @@
     .card[data-blur="true"] .veil{ display:inline-flex; align-items:center; gap:6px; margin-left:auto; font-size:13px; cursor:pointer; color:#7ea4ff; }
     .card[data-collapsed="true"] .answer{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
 
-    /* 반응형: 좁은 화면에서 히어로 1열 */
+    /* === Search Input: always white background === */
+    .searchbar input[type="search"]{
+      flex:1; min-width:240px; padding:14px 16px; border-radius:12px;
+      background:#ffffff !important; color:#0b1020 !important; caret-color:#0b1020;
+      border:1px solid rgba(0,0,0,.15) !important; box-shadow: inset 0 0 0 2px transparent;
+      outline:none; transition: box-shadow .2s,border-color .2s;
+    }
+    .searchbar input[type="search"]::placeholder{ color:#6b7280; }
+    .searchbar input[type="search"]:focus{
+      border-color:#2a4db3 !important; box-shadow:0 0 0 3px rgba(42,77,179,.25); outline:none;
+    }
+    .searchbar input[type="search"]:-webkit-autofill{
+      -webkit-text-fill-color:#0b1020 !important;
+      box-shadow:0 0 0px 1000px #ffffff inset; -webkit-box-shadow:0 0 0px 1000px #ffffff inset;
+    }
+
+    /* 반응형 */
     @media (max-width: 880px){
       .hero{ grid-template-columns: 1fr; }
       .hero-illus{ order:-1; }
@@ -199,312 +182,13 @@
 
   <script>
     /* =========================
-       FAQ 데이터 (51문항, 재배치/수정 반영)
-       - Q1~Q8: 주전공/프로젝트(세부 포함)
-       - Q9~: 전공기초필수 묶음
+       FAQ 데이터 (51문항)
+       - Q1~Q8: 주전공/프로젝트
+       - Q9~Q13: 전공기초필수
        ========================= */
     const faqData = [
       // ── 주전공/프로젝트 (1~8)
       {id:"1", q:"한양인터칼리지 주전공 시 프로젝트 이수 요건은?", a:"1·2·3·4학년 프로젝트를 모두 이수합니다. 2·3학년 프로젝트는 한양인터칼리지 전공학점으로 인정됩니다.", kw:["주전공","프로젝트","2학년","3학년","전공학점"], tags:["#주전공","#프로젝트","#전공학점"]},
       {id:"2", q:"타 단과대학 주전공 시 프로젝트 이수 요건은?", a:"1학년(3학점), 4학년(12학점) 프로젝트만 필수입니다. 2·3학년 프로젝트는 필수가 아니며 장학 대상에서 제외됩니다.", kw:["타과","프로젝트","1학년","4학년","장학"], tags:["#프로젝트","#주전공","#장학"]},
       {id:"3", q:"한양인터칼리지 주전공의 2·3학년 프로젝트 학점 반영은?", a:"각 3학점이며 전공학점에 포함됩니다.", kw:["2학년","3학년","전공학점","프로젝트"], tags:["#프로젝트","#전공학점"]},
-      {id:"4", q:"타과 주전공은 2·3학년 프로젝트 수강 가능?", a:"필수는 아니며, 다전공으로 해당 과목을 수강해 학점 취득은 가능하나 프로젝트 장학금은 제외됩니다.", kw:["다전공","프로젝트","장학","수강"], tags:["#프로젝트","#장학"]},
-      {id:"5", q:"프로젝트 장학금 지급 조건은?", a:"한양인터칼리지 2·3학년 프로젝트 이수를 조건으로 지급됩니다. 타과 주전공자는 대상에서 제외됩니다.", kw:["프로젝트 장학금","장학","이수 조건"], tags:["#장학","#프로젝트"]},
-      {id:"6", q:"한양인터칼리지 주전공의 1학년 프로젝트 위치는?", a:"1학년 프로젝트(전공핵심 3학점)는 필수입니다. 전공학점 포함 여부는 주전공 유형에 따라 상이합니다.", kw:["1학년 프로젝트","전공핵심","3학점"], tags:["#프로젝트"]},
-      {id:"7", q:"타과 주전공의 1·4학년 프로젝트 반영은?", a:"1학년 3학점·4학년 12학점 필수 이수, 전공학점에는 미포함(총졸업학점 반영).", kw:["타과","1학년","4학년","프로젝트"], tags:["#프로젝트"]},
-      {id:"8", q:"한양인터칼리지 주전공의 2·3학년 프로젝트 위치는?", a:"각 3학점, 전공학점으로 포함됩니다.", kw:["2학년","3학년","프로젝트","전공학점"], tags:["#프로젝트","#전공학점"]},
-
-      // ── 전공기초필수(9~13)
-      {id:"9",  q:"MSC가 아닌 전공기초필수 과목은 전공학점 인정?", a:"네. 주전공으로 선택한 학부(과)에 개설된 기초과학이 아닌 전공기초필수 과목은 주전공 전공학점(48학점)에 포함됩니다.", kw:["전공기초필수","전공학점","48학점","MSC 아님"], tags:["#전공기초필수","#전공학점"]},
-      {id:"10", q:"전공기초필수를 모두 이수해야 졸업이 가능한거야?", a:"네, 주전공으로 선택한 학부(과)에 개설된 2~4학년 전공기초필수 교과목은 모두 이수해야 졸업자격을 갖추게 됩니다. 1학년 전공기초필수 교과목 이수는 필수는 아니지만 이수 시 주전공 전공학점(48학점)에 포함됩니다", kw:["전공기초필수","졸업요건","2~4학년","1학년","전공학점","48학점","주전공"], tags:["#전공기초필수","#졸업요건","#주전공"]},
-      {id:"11", q:"타과 주전공 선택 시 1학년 전공기초필수는 면제되나요?", a:"네. 1학년 전공기초필수는 면제되고, 1학년 필수는 한양인터칼리지 지정 교양필수로 충족합니다.", kw:["타과","전공기초필수","면제","교양필수"], tags:["#전공기초필수","#교양필수"]},
-      {id:"12", q:"선형대수·공업수학 같은 과목의 위치는?", a:"해당 전공의 전공기초필수(2~4학년)로 편성되며 주전공 전공학점(48학점)에 포함됩니다.", kw:["선형대수","공업수학","전공기초필수","48학점"], tags:["#전공기초필수","#전공학점"]},
-      {id:"13", q:"예시) 융합전자공학부 주전공 선택 시 전공기초필수 유의점은?", a:"1학년 전공기초필수는 면제되지만 MSC 과목은 전공학점 미인정. 2~4학년 전공기초필수(선형대수·공업수학1·2 등)는 필수 이수입니다.", kw:["융합전자공학부","MSC","선형대수","공업수학","전공기초필수"], tags:["#공대","#MSC","#전공기초필수"]},
-
-      // ── MSC/기초과학 (14~16)
-      {id:"14", q:"MSC(기초과학) 과목은 전공학점으로 인정되나요?", a:"아니요. 미분적분학·일반화학및실험·일반물리학및실험 등 MSC 과목은 전공학점으로 인정되지 않고 전체 졸업학점으로만 인정됩니다.", kw:["MSC","미분적분학","일반화학및실험","일반물리학및실험","전공학점","전공기초필수"], tags:["#MSC","#졸업요건"]},
-      {id:"15", q:"MSC 과목 목록은?", a:"미분적분학, 일반화학및실험, 일반물리학및실험 관련 교과목입니다.", kw:["MSC","과목","미분적분학","일반화학","일반물리","전공기초필수"], tags:["#MSC"]},
-      {id:"16", q:"공대·자연대 주전공자가 1학년 MSC 과목을 들으면?", a:"전공학점이 아니라 전체 졸업학점으로만 인정됩니다.", kw:["공과대학","자연과학대학","MSC","전공학점","전공기초필수"], tags:["#MSC","#졸업요건"]},
-
-      // ── 교양/공통 (17~21)
-      {id:"17", q:"1학년 교양필수는 몇 학점인가요?", a:"한양인터칼리지 1학년 공통 교양필수는 35학점입니다.", kw:["교양필수","1학년","35학점"], tags:["#교양필수","#1학년"]},
-      {id:"18", q:"핵심교양·사회봉사·커리어개발2 이수 기준은?", a:"핵심교양 4학점, 사회봉사 1학점, 커리어개발2 1학점입니다.", kw:["핵심교양","사회봉사","커리어개발2","이수"], tags:["#교양필수"]},
-      {id:"19", q:"커리어개발2는 어느 학과 개설 과목을 들어야 하나요?", a:"선택한 주전공 학부(과)에서 개설한 커리어개발2를 수강해야 합니다.", kw:["커리어개발2","주전공 학과","교양필수"], tags:["#커리어개발","#교양필수"]},
-      {id:"20", q:"교양필수에서 F를 받으면?", a:"졸업 전까지 재수강하여 학점을 취득해야 합니다.", kw:["교양필수","F","재수강","졸업"], tags:["#교양필수","#졸업요건"]},
-      {id:"21", q:"1학년 공통 교과 예시는?", a:"Systems/Design Thinking, Make Core, ACD Thinking, Calculus in Context, Unified Systems Science, Global Critical Anthropology, Life Project 등.", kw:["공통교과","Systems Thinking","Life Project"], tags:["#1학년","#교양필수"]},
-
-      // ── 주전공 신청/자격/변경 (22~26)
-      {id:"22", q:"주전공 신청 자격(2025학번)은?", a:"주전공 신청 학기에 재학 중이며 누적 평점 평균 2.0 이상이면 신청 가능합니다.", kw:["주전공","신청 자격","누적평점","2.0"], tags:["#주전공","#성적"]},
-      {id:"23", q:"1학년 공통에서 F가 있어도 주전공 신청 가능?", a:"누평 2.0 이상이면 신청 가능하나, F 받은 교양필수는 졸업 전 반드시 재수강해야 합니다.", kw:["F","누적평점","재수강","주전공"], tags:["#성적","#주전공","#교양필수"]},
-      {id:"24", q:"주전공은 성적 경쟁이 있나요?", a:"자격 충족 시 전원 선발하며 계열 제한 없이 희망 전공을 자유롭게 선택합니다.", kw:["성적경쟁","전원 선발","자유선택"], tags:["#주전공","#선발"]},
-      {id:"25", q:"주전공 선택/변경은 몇 번 가능?", a:"재학 중 총 2회(2학기 중(10월) 최초 선택 + 졸업 전 1회 변경) 가능합니다.", kw:["주전공 변경","2회","10월","졸업 전"], tags:["#주전공","#변경"]},
-      {id:"26", q:"전공 선택이 불가능한 학과는?", a:"의과대학, 간호학과, 사범대학, 음악대학, 예술·체육대학 학부(과), 산업체 계약학과(반도체공학과)는 선택 불가입니다.", kw:["의대","간호","사범","음악","예술","체육","반도체공학"], tags:["#제한전공"]},
-
-      // ── 다전공/부전공/프로그램 (27~36)
-      {id:"27", q:"한양인터칼리지 학생은 프로그램 부전공이 필수인가요?", a:"네. 어떤 주전공이든 한양인터칼리지 프로그램 교육과정 1개 이상을 부전공(24학점 이상) 이상으로 이수해야 합니다.", kw:["프로그램","부전공","24학점","필수"], tags:["#부전공","#프로그램"]},
-      {id:"28", q:"주전공 최소 전공학점은?", a:"주전공은 최소 48학점 이상 이수해야 합니다.", kw:["주전공","48학점","전공학점"], tags:["#주전공","#졸업요건"]},
-      {id:"29", q:"일반 다중전공 최소 학점과 구성은?", a:"(건축 제외) 전공과목 36학점 이상: 200~300단위 21학점 + 400단위 6학점 포함.", kw:["다중전공","36학점","400단위","200~300단위"], tags:["#다중전공"]},
-      {id:"30", q:"건축학부 다중전공 학점 기준은?", a:"100~300단위 60학점 + 400단위 18학점을 포함해 총 100학점 이상입니다.", kw:["건축학부","다중전공","100학점"], tags:["#다중전공","#건축"]},
-      {id:"31", q:"프로그램 다중전공의 학점 기준은?", a:"프로그램 다중전공은 지정 과목을 36학점 이상(400단위 6 포함) 이수합니다.", kw:["프로그램 다중전공","36학점","400단위 6"], tags:["#다중전공","#프로그램"]},
-      {id:"32", q:"부전공 최소 학점 기준은?", a:"일반 부전공은 21학점(200~400단위 12 포함), 프로그램 부전공은 단위 구분 없이 24학점입니다.", kw:["부전공","21학점","프로그램 부전공 24"], tags:["#부전공","#프로그램"]},
-      {id:"33", q:"부전공 대신 다중전공으로 대체 가능?", a:"네. 한양인터칼리지 프로그램 부전공 대신 다중전공으로 졸업요건 충족이 가능합니다.", kw:["부전공 대체","다중전공","졸업요건"], tags:["#다중전공","#부전공"]},
-      {id:"34", q:"마이크로전공으로 프로그램 부전공 대체 가능?", a:"아니요. 마이크로전공(12학점)은 프로그램 부전공을 대체할 수 없습니다.", kw:["마이크로전공","12학점","부전공 대체"], tags:["#마이크로전공","#부전공"]},
-      {id:"35", q:"프로그램을 주전공으로 선택하면 추가 전공이 필요한가요?", a:"네. 타 단과대학 전공 또는 한양인터칼리지 내 다른 프로그램을 부전공 이상으로 추가 이수해야 합니다.", kw:["프로그램 주전공","부전공 이상","추가 전공"], tags:["#주전공","#부전공","#프로그램"]},
-
-      // ── 학위/학점/총졸업학점/프로젝트학점 포지션 (36~40)
-      {id:"36", q:"졸업 시 학위 표기는?", a:"주전공 단과대학·학부(과) 명칭으로 수여되고, 부·다전공은 졸업증명서에 표기됩니다.", kw:["학위","졸업증명서","표기"], tags:["#졸업요건"]},
-      {id:"37", q:"전공 400단위 이수 요건은?", a:"전공 400단위 6학점 이상(주전공 기준) 이수해야 합니다.", kw:["400단위","전공","6학점"], tags:["#전공학점","#졸업요건"]},
-      {id:"38", q:"한양인터칼리지 주전공의 4학년 프로젝트 학점 반영은?", a:"4학년 프로젝트(12학점)는 전공학점에 포함되지 않습니다(총졸업학점 반영).", kw:["4학년 프로젝트","12학점","전공학점"], tags:["#프로젝트","#전공학점"]},
-      {id:"39", q:"타과 주전공의 4학년 프로젝트 학점은?", a:"4학년 프로젝트(12학점)는 필수 이수이나 전공학점에는 미포함입니다.", kw:["4학년","프로젝트","전공학점 아님"], tags:["#프로젝트"]},
-      {id:"40", q:"총 졸업학점은?", a:"총 졸업학점은 140학점입니다.", kw:["졸업학점","140학점"], tags:["#졸업요건"]},
-
-      // ── 일정/절차 (41~45)
-      {id:"41", q:"전공설명회 수요조사 일정은?", a:"예시: 2025.09.18~09.22. 세부는 학교 공지를 확인하세요.", kw:["전공설명회","수요조사","일정"], tags:["#일정","#전공설명회"]},
-      {id:"42", q:"전공설명회 본행사는?", a:"10월 중 예정(추후 별도 안내).", kw:["전공설명회","일정","10월"], tags:["#일정","#전공설명회"]},
-      {id:"43", q:"주전공 선택 신청 기간은?", a:"예시: 2025.10.30~11.05.", kw:["주전공","선택신청","일정"], tags:["#일정","#주전공"]},
-      {id:"44", q:"다중전공 선택 신청 기간은?", a:"예시: 2025.11.10~11.14.", kw:["다중전공","선택신청","일정"], tags:["#일정","#다중전공"]},
-      {id:"45", q:"주전공/다중전공 확정 및 심의 시점은?", a:"예시: 2026.01 자격요건 심의 후 확정.", kw:["자격요건","심의","확정"], tags:["#일정","#주전공","#다중전공"]},
-
-      // ── 성적/평점/재수강 (46~47)
-      {id:"46", q:"누적 평점 2.0 미만이면 주전공 신청 불가?", a:"네. 신청 학기 재학 중이며 누적 평점 2.0 이상이어야 합니다.", kw:["누적평점","2.0","주전공 신청"], tags:["#성적","#주전공"]},
-      {id:"47", q:"F가 있어도 졸업 가능?", a:"교양필수 등 필수 과목에서 F를 받은 경우 반드시 재수강하여 학점을 취득해야 졸업이 가능합니다.", kw:["F","재수강","졸업"], tags:["#졸업요건","#교양필수"]},
-
-      // ── 검색 팁 (48~49)
-      {id:"48", q:"검색 팁: MSC 관련 키워드는?", a:"“MSC, 미분적분학, 일반화학, 일반물리, 전공학점, 기초과학, 전공기초필수” 등을 조합하면 정확도가 높습니다.", kw:["검색팁","MSC","키워드","전공기초필수"], tags:["#MSC","#검색"]},
-      {id:"49", q:"검색 팁: 전공학점/전공기초필수는?", a:"“전공학점 48, 전공기초필수, 400단위, 200~300단위” 등의 키워드가 유효합니다.", kw:["검색","전공학점","전공기초필수"], tags:["#검색","#전공학점"]},
-
-      // ── 종합/주의 (50~51)
-      {id:"50", q:"최종 판단 근거는?", a:"항상 최신 ‘학교 공식 공지/규정’을 우선합니다. 본 페이지는 안내 보조용입니다.", kw:["최종근거","공식공지","규정"], tags:["#안내","#주의"]},
-      {id:"51", q:"온라인 신청 절차는?", a:"학내 포털/공지 절차에 따릅니다. 제출서류·승인 플로우는 공지 확인이 필요합니다.", kw:["신청 절차","온라인","포털"], tags:["#일정","#절차"]}
-    ];
-
-    // 태그 목록
-    const allTags = Array.from(new Set(faqData.flatMap(x => x.tags))).sort((a,b)=>a.localeCompare(b,'ko'));
-
-    // DOM
-    const qInput    = document.getElementById('q');
-    const searchForm= document.getElementById('searchForm');
-    const clearBtn  = document.getElementById('clearBtn');
-    const shareBtn  = document.getElementById('shareBtn');
-    const resultsEl = document.getElementById('results');
-    const countEl   = document.getElementById('count');
-    const tagBar    = document.getElementById('tagBar');
-    const hideToggle= document.getElementById('hideToggle');
-
-    // 전역 숨김 모드 상태 (로컬 저장)
-    let HIDE_MODE = JSON.parse(localStorage.getItem('hideAnswers') || 'false');
-    if (hideToggle) hideToggle.checked = HIDE_MODE;
-
-    // 태그 UI
-    const selectedTags = new Set();
-    function renderTags(){
-      tagBar.innerHTML = '';
-      allTags.forEach(tag=>{
-        const btn = document.createElement('button');
-        btn.className = 'chip'; btn.type='button';
-        btn.setAttribute('data-on', selectedTags.has(tag) ? 'true' : 'false');
-        btn.textContent = tag;
-        btn.addEventListener('click', ()=>{
-          if(selectedTags.has(tag)){ selectedTags.delete(tag); btn.setAttribute('data-on','false'); }
-          else { selectedTags.add(tag); btn.setAttribute('data-on','true'); }
-          update();
-        });
-        tagBar.appendChild(btn);
-      });
-    }
-
-    // 검색/스코어링
-    const normalize = s => (s ?? '').toString().toLowerCase().replace(/\s+/g,' ').trim();
-
-    function scoreEntry(entry, query){
-      const nq = normalize(query);
-      if(!nq && selectedTags.size===0) return 1;
-      if(![...selectedTags].every(t => entry.tags.includes(t))) return 0;
-      if(!nq) return 1;
-
-      let score = 0;
-      const hay = normalize(entry.q + ' ' + entry.a + ' ' + entry.kw.join(' '));
-      if(hay.includes(nq)) score += 6;
-      entry.kw.forEach(k=>{
-        const nk = normalize(k);
-        if(nk === nq) score += 5;
-        else if(nk.includes(nq) || nq.includes(nk)) score += 3;
-      });
-      nq.split(' ').forEach(tok=>{
-        if(tok.length>1 && hay.includes(tok)) score += 1;
-      });
-      return score;
-    }
-
-    function highlight(text, query){
-      const nq = normalize(query);
-      if(!nq) return text;
-      const esc = nq.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      try{ return text.replace(new RegExp(`(${esc})`,'gi'), '<span class="hl">$1</span>'); }
-      catch{ return text; }
-    }
-
-    // 렌더
-    function render(list, query){
-      resultsEl.innerHTML = '';
-      if(list.length===0){
-        resultsEl.innerHTML = `<div class="empty">결과가 없습니다. 검색어를 바꾸거나 태그 선택을 확인해 주세요.</div>`;
-        countEl.textContent = '0';
-        return;
-      }
-      countEl.textContent = String(list.length);
-
-      for(const e of list){
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.id = `q${e.id}`;
-        card.setAttribute('data-blur', HIDE_MODE ? 'true' : 'false');
-        card.setAttribute('data-collapsed', HIDE_MODE ? 'false' : 'true');
-
-        card.innerHTML = `
-          <div class="qline">
-            <span class="badge">Q${e.id}</span>
-            <h3 class="qtext" style="cursor:pointer" aria-expanded="${HIDE_MODE ? 'true' : 'false'}">${highlight(e.q, query)}</h3>
-            <span class="veil" role="button" title="답변 보기">👁 보기</span>
-            <span class="reveal" role="button" title="접기/펼치기">${HIDE_MODE ? '' : '▾ 펼치기'}</span>
-            <span class="alink" role="button" title="링크 복사" data-id="${e.id}">🔗 복사</span>
-          </div>
-          <div class="answer" aria-hidden="${HIDE_MODE ? 'false' : 'true'}">${highlight(e.a, query)}</div>
-          <div class="tags">${e.tags.map(t=>`<span class="tag">${t}</span>`).join(' ')}</div>
-        `;
-
-        const answerEl = card.querySelector('.answer');
-        const revealBtn = card.querySelector('.reveal');
-        const veilBtn   = card.querySelector('.veil');
-        const qtitle    = card.querySelector('.qtext');
-
-        function syncCardView(){
-          if (HIDE_MODE){
-            card.setAttribute('data-blur','true');
-            card.setAttribute('data-collapsed','false');
-            answerEl.style.filter = 'blur(6px)';
-            answerEl.style.maxHeight = 'none';
-            if(revealBtn) revealBtn.style.display = 'none';
-            if(veilBtn) veilBtn.style.display   = 'inline-flex';
-            qtitle.setAttribute('aria-expanded','true');
-            answerEl.setAttribute('aria-hidden','false');
-          } else {
-            card.setAttribute('data-blur','false');
-            if(veilBtn) veilBtn.style.display   = 'none';
-            if(revealBtn) revealBtn.style.display = 'inline-flex';
-            answerEl.style.filter = 'none';
-            const collapsed = card.getAttribute('data-collapsed') === 'true';
-            answerEl.style.maxHeight = collapsed ? '0' : 'none';
-            if(revealBtn) revealBtn.textContent = collapsed ? '▾ 펼치기' : '▴ 접기';
-            qtitle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-            answerEl.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
-          }
-        }
-        syncCardView();
-
-        function toggleAccordion(){
-          if (HIDE_MODE) return;
-          const collapsed = card.getAttribute('data-collapsed') === 'true';
-          card.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
-          syncCardView();
-        }
-        qtitle.addEventListener('click', toggleAccordion);
-        revealBtn?.addEventListener('click', toggleAccordion);
-
-        veilBtn?.addEventListener('click', ()=>{
-          answerEl.style.filter = 'none';
-          veilBtn.style.display = 'none';
-        });
-
-        card.querySelector('.alink').addEventListener('click', (ev)=>{
-          const id = ev.currentTarget.getAttribute('data-id');
-          const url = new URL(location.href);
-          url.hash = `#q${id}`;
-          const qv = qInput.value.trim();
-          if(qv) url.searchParams.set('q', qv); else url.searchParams.delete('q');
-          if(selectedTags.size) url.searchParams.set('tags', [...selectedTags].join(','));
-          else url.searchParams.delete('tags');
-          if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(url.toString()).then(()=>{
-              ev.currentTarget.textContent = '✅ 복사됨';
-              setTimeout(()=>{ ev.currentTarget.textContent='🔗 복사'; },1200);
-            });
-          } else {
-            window.prompt("아래 링크를 복사하세요:", url.toString());
-          }
-        });
-
-        resultsEl.appendChild(card);
-      }
-    }
-
-    function search(query){
-      return faqData
-        .map(e => ({entry:e, score:scoreEntry(e, query)}))
-        .filter(r => r.score > 0)
-        .sort((a,b)=> b.score - a.score)
-        .map(r => r.entry);
-    }
-
-    function update(pushState=true){
-      const q = qInput.value;
-      const list = search(q);
-      render(list, q);
-      if(pushState){
-        const url = new URL(location.href);
-        if(q.trim()) url.searchParams.set('q', q.trim()); else url.searchParams.delete('q');
-        if(selectedTags.size) url.searchParams.set('tags', [...selectedTags].join(','));
-        else url.searchParams.delete('tags');
-        if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
-        history.replaceState(null,'',url.toString());
-      }
-    }
-
-    // 초기화 & 이벤트
-    function initFromQuery(){
-      const params = new URLSearchParams(location.search);
-      const q = params.get('q') || '';
-      qInput.value = q;
-      const tagQuery = params.get('tags');
-      if(tagQuery){ tagQuery.split(',').forEach(t=> selectedTags.add(t)); }
-      if(params.get('hide') === '1'){ HIDE_MODE = true; if(hideToggle) hideToggle.checked = true; }
-    }
-
-    initFromQuery();
-    renderTags();
-    update(false);
-
-    searchForm.addEventListener('submit', (e)=>{ e.preventDefault(); update(); });
-    qInput.addEventListener('input', ()=> update());
-    clearBtn.addEventListener('click', ()=>{
-      qInput.value = '';
-      selectedTags.clear();
-      renderTags();
-      update();
-    });
-    shareBtn.addEventListener('click', ()=>{
-      const url = new URL(location.href);
-      if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url.toString()).then(()=>{
-          shareBtn.textContent='복사됨 ✅'; setTimeout(()=>shareBtn.textContent='링크 복사',1200);
-        });
-      } else {
-        window.prompt("아래 링크를 복사하세요:", url.toString());
-      }
-    });
-
-    hideToggle?.addEventListener('change', ()=>{
-      HIDE_MODE = hideToggle.checked;
-      localStorage.setItem('hideAnswers', JSON.stringify(HIDE_MODE));
-      update(false);
-    });
-
-    if(location.hash){
-      const el = document.querySelector(location.hash);
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  </script>
-</body>
-</html>
+      {id:"4", q:"타과 주전공은 2·3학년 프로젝트 수강 가능?", a:"필수는 아니며, 다전공으로 해당 과목을 수강해 학점 취득은 가능하나 프로젝트 장학금은 제외됩니다.", kw:
