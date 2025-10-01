@@ -1,3 +1,4 @@
+<!-- version: 2025-10-01 | Hanyang Intercollege FAQ (51문항, MSC/기초과학 키워드 보강, Q9 답변 교체, Q51 추가) -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -5,6 +6,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Hanyang Intercollege 전공선택 관련 FAQ</title>
   <meta name="description" content="2025학번 한양인터칼리지 전공선택·졸업요건 정적 FAQ 검색기" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>">
   <style>
     :root{
@@ -111,6 +115,9 @@
   <script>
     /* =========================
        1) FAQ 데이터 (50문항 + 신규 1문항 = 51개, 최신본 반영)
+       - MSC 키워드에 '전공기초필수' 추가
+       - id:9 답변 교체
+       - id:51 신규 문항 추가
        ========================= */
     const faqData = [
       // 주전공/프로젝트
@@ -201,7 +208,6 @@
     // =========================
     const qInput    = document.getElementById('q');
     const searchForm= document.getElementById('searchForm');
-    const searchBtn = document.getElementById('searchBtn');
     const clearBtn  = document.getElementById('clearBtn');
     const shareBtn  = document.getElementById('shareBtn');
     const resultsEl = document.getElementById('results');
