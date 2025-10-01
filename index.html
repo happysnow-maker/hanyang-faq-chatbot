@@ -63,8 +63,11 @@
       background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;font-weight:600;box-shadow:var(--shadow);}
     .toolbar{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
     .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--chip);
-      border:1px solid rgba(255,255,255,.08);color:var(--text);cursor:pointer;font-size:14px;}
+      border:1px solid rgba(255,255,255,.08);color:var(--text);cursor:pointer;font-size:14px;transition:all .2s;}
+    .chip:hover{background:var(--chip-on);border-color:rgba(64,129,255,.25)}
     .chip[data-on="true"]{background:var(--chip-on);border-color:rgba(64,129,255,.45)}
+    .chip[data-mode="and"]{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;}
+    .chip[data-mode="and"]:hover{opacity:0.9;}
 
     /* List */
     .panel{margin-top:24px;background:var(--panel);border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);}
@@ -118,6 +121,7 @@
         <div id="tagBar" class="toolbar"></div>
         <div class="toolbar" id="privacyBar">
           <label class="chip"><input id="hideToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>답변 숨김 모드</label>
+          <label class="chip"><input id="tagModeToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>태그 AND 검색 (체크 시 모든 태그 포함)</label>
         </div>
       </div>
       <div class="hero-illus">
@@ -226,7 +230,7 @@
       { tag: '#신청자격',      re: /(신청 ?자격|누(적)?평점|2\.?0|자격 요건|재학)/i },
       { tag: '#장학금',        re: /(장학금|프로젝트 장학)/i },
       { tag: '#졸업',          re: /(졸업|학위|졸업증명서|졸업요건)/i },
-      { tag: '#건축',          re: /(건축학부|건축학인증|건축)/i },
+      { tag: '#건축학부',      re: /(건축학부|건축학인증|건축)/i },
     ];
 
     function _haystack(e){
@@ -242,7 +246,7 @@
       }
       const PRIORITY = ['#일정','#주전공선택','#주전공변경','#주전공','#다전공','#부전공',
         '#프로젝트','#1학년','#2학년','#3학년','#4학년','#전공기초필수','#MSC','#교양필수',
-        '#학점','#졸업학점','#신청자격','#장학금','#졸업','#건축'];
+        '#학점','#졸업학점','#신청자격','#장학금','#졸업','#건축학부'];
       hits.sort((a,b)=> PRIORITY.indexOf(a)-PRIORITY.indexOf(b));
       const uniq = Array.from(new Set(hits));
       return uniq.slice(0, MAX_TAGS_PER_ITEM);
@@ -268,6 +272,16 @@
     /* 전역 숨김 모드 상태 */
     let HIDE_MODE = JSON.parse(localStorage.getItem('hideAnswers') || 'false');
     if (hideToggle) hideToggle.checked = HIDE_MODE;
+    
+    let TAG_MODE = 'or'; // 'or' 또는 'and'
+    const tagModeToggle = document.getElementById('tagModeToggle');
+    if (tagModeToggle) {
+      tagModeToggle.checked = false;
+      tagModeToggle.addEventListener('change', ()=>{
+        TAG_MODE = tagModeToggle.checked ? 'and' : 'or';
+        update(false);
+      });
+    }
 
     /* 태그 렌더 */
     const selectedTags = new Set();
@@ -300,7 +314,18 @@
     function scoreEntry(entry, query){
       const nq = normalize(query);
       if(!nq && selectedTags.size===0) return 1;
-      if(![...selectedTags].every(t => entry.tags.includes(t))) return 0;
+      
+      // 태그 필터링 (OR 또는 AND)
+      if(selectedTags.size > 0) {
+        if(TAG_MODE === 'and') {
+          // AND: 선택된 모든 태그를 포함해야 함
+          if(![...selectedTags].every(t => entry.tags.includes(t))) return 0;
+        } else {
+          // OR: 선택된 태그 중 하나라도 포함하면 됨
+          if(![...selectedTags].some(t => entry.tags.includes(t))) return 0;
+        }
+      }
+      
       if(!nq) return 1;
       
       let score = 0;
