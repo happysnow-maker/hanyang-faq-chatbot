@@ -1,4 +1,4 @@
-<!-- version: 2025-10-02a | Hanyang Intercollege FAQ (Logo Enlarged + Hero Smaller) -->
+<!-- version: 2025-10-02b | Hanyang Intercollege FAQ (Full Build) -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,9 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Hanyang Intercollege 전공선택 관련 FAQ</title>
   <meta name="description" content="2025학번 한양인터칼리지 전공선택·졸업요건 정적 FAQ 검색기" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-  <meta http-equiv="Pragma" content="no-cache"/>
-  <meta http-equiv="Expires" content="0"/>
   <link rel="icon" type="image/png" href="assets/hyuic.png"/>
 
   <style>
@@ -32,168 +29,97 @@
         --hl: rgba(37,99,235,.18);
       }
     }
-
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, '맑은 고딕', sans-serif;
-      background:
-        radial-gradient(1000px 420px at 10% -10%, rgba(42,77,179,.25), transparent 60%),
-        radial-gradient(900px 380px at 100% 10%, rgba(27,59,145,.20), transparent 60%),
-        linear-gradient(180deg, var(--bg), #081024 55%);
-      color:var(--text);
-    }
-    .wrap{ max-width:1060px; margin:40px auto; padding:0 20px; }
+    body{margin:0;font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans KR,sans-serif;background:
+      radial-gradient(1000px 420px at 10% -10%, rgba(42,77,179,.25), transparent 60%),
+      radial-gradient(900px 380px at 100% 10%, rgba(27,59,145,.20), transparent 60%),
+      linear-gradient(180deg, var(--bg), #081024 55%);color:var(--text);}
+    .wrap{max-width:1060px;margin:40px auto;padding:0 20px;}
 
-    /* ===== HERO ===== */
-    .hero{
-      display:grid; grid-template-columns: 1fr minmax(200px,280px);
-      gap:18px;
-      background: linear-gradient(180deg, var(--panel), var(--panel-2) 80%);
-      padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.06); backdrop-filter: blur(6px);
-    }
-    .hero-illus{
-      display:flex; align-items:center; justify-content:center;
-      border-radius:14px;
-      background: radial-gradient(140px 120px at 40% 40%, rgba(126,164,255,.15), transparent 70%);
-    }
-    .hero-illus img{
-      width:100%;
-      max-width:240px; /* 줄임 */
-      height:auto;
-      object-fit:contain;
-      display:block;
-      filter: drop-shadow(0 8px 20px rgba(0,0,0,.3));
-    }
-    .brandbox{
-      display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom: 6px;
-    }
-    /* 로고 크게 (배경 제거) */
-    .logo{
-      width:160px;   /* 크게 확대 */
-      height:auto;
-      border-radius:0;
-      background:none;
-      border:0;
-    }
-    .logo img{ width:100%; height:auto; display:block; }
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr minmax(200px,280px);gap:18px;
+      background:linear-gradient(180deg,var(--panel),var(--panel-2) 80%);
+      padding:24px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06);}
+    .brandbox{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
+    .logo{width:160px;height:auto;background:none;border:0;}
+    .logo img{width:100%;height:auto;display:block;}
+    .hero h1{margin:0;font-size:clamp(22px,3.2vw,34px)}
+    .hero p{margin:4px 0 0;color:var(--muted)}
+    .hero-illus{display:flex;align-items:center;justify-content:center;border-radius:14px;
+      background:radial-gradient(140px 120px at 40% 40%,rgba(126,164,255,.15),transparent 70%);}
+    .hero-illus img{width:100%;max-width:240px;height:auto;object-fit:contain;display:block;
+      filter:drop-shadow(0 8px 20px rgba(0,0,0,.3));}
 
-    .hero h1{margin:0; font-size: clamp(22px, 3.2vw, 34px)}
-    .hero p{margin:4px 0 0; color:var(--muted)}
+    /* Controls */
+    .searchbar{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+    .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;font-weight:600;box-shadow:var(--shadow);}
+    .toolbar{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--chip);
+      border:1px solid rgba(255,255,255,.08);color:var(--text);cursor:pointer;font-size:14px;}
+    .chip[data-on="true"]{background:var(--chip-on);border-color:rgba(64,129,255,.45)}
 
-    /* ===== Controls ===== */
-    .searchbar{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
-    .btn{
-      padding: 12px 16px; border-radius:12px; border:0; cursor:pointer;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:white; font-weight:600; box-shadow: var(--shadow);
-    }
-    .toolbar{ margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px; border-radius:999px; background:var(--chip);
-      border:1px solid rgba(255,255,255,.08); color:var(--text); cursor:pointer;
-      user-select:none; transition: transform .05s ease, background .2s; font-size:14px;
-    }
-    .chip[data-on="true"]{ background: var(--chip-on); border-color: rgba(64,129,255,.45)}
-    .chip:active{ transform: scale(.98)}
+    /* List */
+    .panel{margin-top:24px;background:var(--panel);border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);}
+    .meta{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px dashed rgba(255,255,255,.12);color:var(--muted);font-size:14px;}
+    .results{padding:10px 14px 6px;}
+    .card{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin:12px 6px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent 60%);}
+    .qline{display:flex;gap:10px;align-items:flex-start;}
+    .qline h3{margin:0;font-size:18px;line-height:1.35;cursor:pointer;}
+    .badge{font-size:12px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand-2));padding:4px 8px;border-radius:999px;}
+    .alink{margin-left:auto;color:#7ea4ff;cursor:pointer;font-size:13px;}
+    .answer{margin-top:10px;color:var(--text);line-height:1.65}
+    .answer .hl{background:transparent;box-shadow:inset 0 -0.35em 0 var(--hl);}
+    .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+    .tag{font-size:12px;color:#bcd0ff;background:rgba(22,42,92,.6);padding:4px 8px;border-radius:999px;}
+    .footer{margin:20px 0 60px;color:#b1badd;font-size:13px;text-align:center;}
 
-    /* ===== List ===== */
-    .panel{ margin-top:24px; background:var(--panel); border-radius:var(--radius); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
-    .meta{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px dashed rgba(255,255,255,.12); color:var(--muted); font-size:14px; }
-    .results{ padding: 10px 14px 6px; }
-    .card{ border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px; margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
-    .qline{ display:flex; gap:10px; align-items:flex-start; }
-    .qline h3{ margin:0; font-size:18px; line-height:1.35; }
-    .badge{ font-size:12px; font-weight:700; color:#fff; background:linear-gradient(135deg, var(--brand), var(--brand-2)); padding:4px 8px; border-radius:999px; }
-    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:#7ea4ff; cursor:pointer; font-size:13px; }
-    .answer{margin-top:10px; color:var(--text); line-height:1.65}
-    .answer .hl{ background: transparent; box-shadow: inset 0 -0.35em 0 var(--hl); border-radius:2px; }
-    .tags{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px}
-    .tag{ font-size:12px; color:#bcd0ff; background: rgba(22,42,92,.6); padding:4px 8px; border-radius:999px; border:1px solid rgba(147,176,255,.15) }
-    .empty{ padding:22px; color:var(--muted) }
-    .footer{ margin: 20px 0 60px; color:#b1badd; font-size:13px; text-align:center; }
-    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    /* 숨김/블러 + 아코디언 */
+    .card .reveal{margin-left:auto;font-size:13px;cursor:pointer;color:#7ea4ff;}
+    .card .veil{display:none;}
+    .card[data-blur="true"] .veil{display:inline-flex;margin-left:auto;font-size:13px;cursor:pointer;color:#7ea4ff;}
+    .card[data-collapsed="true"] .answer{max-height:0;overflow:hidden;transition:max-height .25s ease;}
 
-    /* ===== 숨김/블러 모드 & 아코디언 ===== */
-    .card .reveal{ margin-left:auto; font-size:13px; cursor:pointer; color:#7ea4ff; }
-    .card .veil{ display:none; }
-    .card[data-blur="true"] .veil{ display:inline-flex; align-items:center; gap:6px; margin-left:auto; font-size:13px; cursor:pointer; color:#7ea4ff; }
-    .card[data-collapsed="true"] .answer{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
-
-    /* === Search Input: always white background === */
-    .searchbar input[type="search"]{
-      flex:1; min-width:240px; padding:14px 16px; border-radius:12px;
-      background:#ffffff !important; color:#0b1020 !important; caret-color:#0b1020;
-      border:1px solid rgba(0,0,0,.15) !important; box-shadow: inset 0 0 0 2px transparent;
-      outline:none; transition: box-shadow .2s,border-color .2s;
-    }
-    .searchbar input[type="search"]::placeholder{ color:#6b7280; }
-    .searchbar input[type="search"]:focus{
-      border-color:#2a4db3 !important; box-shadow:0 0 0 3px rgba(42,77,179,.25); outline:none;
-    }
-    .searchbar input[type="search"]:-webkit-autofill{
-      -webkit-text-fill-color:#0b1020 !important;
-      box-shadow:0 0 0px 1000px #ffffff inset; -webkit-box-shadow:0 0 0px 1000px #ffffff inset;
-    }
-
-    /* 반응형 */
-    @media (max-width: 880px){
-      .hero{ grid-template-columns: 1fr; }
-      .hero-illus{ order:-1; }
-    }
+    /* Search Input always white */
+    .searchbar input[type="search"]{flex:1;min-width:240px;padding:14px 16px;border-radius:12px;
+      background:#fff !important;color:#0b1020 !important;caret-color:#0b1020;
+      border:1px solid rgba(0,0,0,.15) !important;}
+    .searchbar input[type="search"]::placeholder{color:#6b7280;}
+    .searchbar input[type="search"]:focus{border-color:#2a4db3 !important;box-shadow:0 0 0 3px rgba(42,77,179,.25);}
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <!-- 좌측: 로고 크게 + 검색 -->
       <div>
         <div class="brandbox">
-          <div class="logo" aria-hidden="true">
-            <img src="assets/hyuic.png" alt="Hanyang Intercollege 로고">
-          </div>
-          <span style="color:#bcd0ff; font-weight:600">전공선택 FAQ</span>
+          <div class="logo"><img src="assets/hyuic.png" alt="Hanyang Intercollege 로고"></div>
+          <span style="color:#bcd0ff;font-weight:600">전공선택 FAQ</span>
         </div>
         <h1>Hanyang Intercollege 전공선택 관련 FAQ</h1>
-        <p>전공 선택 · 다(부)전공 · MSC · 프로젝트 · 졸업요건 등 핵심 질의응답을 키워드/태그로 빠르게 찾아보세요.</p>
-
-        <form id="searchForm" class="searchbar" role="search" aria-label="FAQ 검색">
-          <label class="sr-only" for="q">검색어</label>
-          <input id="q" type="search" placeholder="예) 전공기초필수, MSC 전공학점, 주전공 변경, 커리어개발2" autocomplete="off" />
-          <button id="searchBtn" class="btn" type="submit" title="검색">검색</button>
-          <button id="clearBtn" class="btn" type="button" title="검색 지우기">지우기</button>
-          <button id="shareBtn" class="btn" type="button" title="현재 검색 링크 복사">링크 복사</button>
+        <p>전공 선택 · 다(부)전공 · MSC · 전공기초필수 · 프로젝트 · 졸업요건 등 핵심 질의응답을 검색하세요.</p>
+        <form id="searchForm" class="searchbar">
+          <input id="q" type="search" placeholder="예) 전공기초필수, MSC 전공학점, 주전공 변경" autocomplete="off"/>
+          <button id="searchBtn" class="btn" type="submit">검색</button>
+          <button id="clearBtn" class="btn" type="button">지우기</button>
+          <button id="shareBtn" class="btn" type="button">링크 복사</button>
         </form>
-
-        <div id="tagBar" class="toolbar" aria-label="태그 필터"></div>
-
-        <!-- 전역 답변 숨김(블러) 모드 스위치 -->
-        <div class="toolbar" id="privacyBar" style="margin-top:6px">
-          <label class="chip" style="cursor:pointer">
-            <input id="hideToggle" type="checkbox" style="accent-color:var(--brand); transform:scale(1.1); margin-right:8px" />
-            답변 숨김 모드
-          </label>
-          <small style="color:var(--muted)">공유·발표 시 질문만 보이게</small>
+        <div id="tagBar" class="toolbar"></div>
+        <div class="toolbar" id="privacyBar">
+          <label class="chip"><input id="hideToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>답변 숨김 모드</label>
         </div>
       </div>
-
-      <!-- 우측: 히어로 일러스트 (축소) -->
       <div class="hero-illus">
-        <img src="assets/intercollege-hero.png" alt="Hanyang Intercollege 캐릭터 일러스트">
+        <img src="assets/intercollege-hero.png" alt="Intercollege 캐릭터">
       </div>
     </section>
 
-    <!-- FAQ 결과 패널 -->
-    <section class="panel" aria-live="polite" aria-busy="false">
-      <div class="meta">
-        <div><span id="count">0</span>건 결과</div>
-        <div>정확도순 · 태그/키워드 동시 필터링</div>
-      </div>
+    <section class="panel">
+      <div class="meta"><div><span id="count">0</span>건 결과</div><div>정확도순</div></div>
       <div id="results" class="results"></div>
     </section>
 
-    <p class="footer">자료 출처: 2025학번 한양인터칼리지 FAQ/안내 (최신본 반영). 본 페이지는 비공식 안내이며, 최종 기준은 학교 공식 공지입니다.</p>
+    <p class="footer">출처: 2025학번 한양인터칼리지 FAQ/안내. 최종 기준은 학교 공식 공지사항입니다.</p>
   </div>
 
   <script>
@@ -215,66 +141,67 @@
 
       // ── 전공기초필수 (9~13)
       {id:"9",  q:"MSC가 아닌 전공기초필수 과목은 전공학점 인정?", a:"네. 주전공으로 선택한 학부(과)에 개설된 기초과학이 아닌 전공기초필수 과목은 주전공 전공학점(48학점)에 포함됩니다.", kw:["전공기초필수","전공학점","48학점","MSC 아님"], tags:["#전공기초필수","#전공학점"]},
-      {id:"10", q:"전공기초필수를 모두 이수해야 졸업이 가능한거야?", a:"네, 주전공으로 선택한 학부(과)에 개설된 2~4학년 전공기초필수 교과목은 모두 이수해야 졸업자격을 갖추게 됩니다. 1학년 전공기초필수 교과목 이수는 필수는 아니지만 이수 시 주전공 전공학점(48학점)에 포함됩니다", kw:["전공기초필수","졸업요건","2~4학년","1학년","전공학점","48학점","주전공"], tags:["#전공기초필수","#졸업요건","#주전공"]},
-      {id:"11", q:"타과 주전공 선택 시 1학년 전공기초필수는 면제되나요?", a:"네. 1학년 전공기초필수는 면제되고, 1학년 필수는 한양인터칼리지 지정 교양필수로 충족합니다.", kw:["타과","전공기초필수","면제","교양필수"], tags:["#전공기초필수","#교양필수"]},
-      {id:"12", q:"선형대수·공업수학 같은 과목의 위치는?", a:"해당 전공의 전공기초필수(2~4학년)로 편성되며 주전공 전공학점(48학점)에 포함됩니다.", kw:["선형대수","공업수학","전공기초필수","48학점"], tags:["#전공기초필수","#전공학점"]},
+      {id:"10", q:"전공기초필수를 모두 이수해야 졸업 가능?", a:"네, 주전공으로 선택한 학부(과)에 개설된 2~4학년 전공기초필수 교과목은 모두 이수해야 졸업자격을 갖추게 됩니다. 1학년 전공기초필수 교과목 이수는 필수는 아니지만 이수 시 주전공 전공학점(48학점)에 포함됩니다", kw:["전공기초필수","졸업요건","2~4학년","1학년","전공학점","48학점","주전공"], tags:["#전공기초필수","#졸업요건","#주전공"]},
+      {id:"11", q:"타과 주전공 선택 시 1학년 전공기초필수 면제?", a:"네. 1학년 전공기초필수는 면제되고, 1학년 필수는 한양인터칼리지 지정 교양필수로 충족합니다.", kw:["타과","전공기초필수","면제","교양필수"], tags:["#전공기초필수","#교양필수"]},
+      {id:"12", q:"선형대수·공업수학 같은 과목의 이수구분은?", a:"해당 전공의 전공기초필수(2~4학년)로 편성되며 주전공 전공학점(48학점)에 포함됩니다.", kw:["선형대수","공업수학","전공기초필수","48학점"], tags:["#전공기초필수","#전공학점"]},
       {id:"13", q:"예시) 융합전자공학부 주전공 선택 시 전공기초필수 유의점은?", a:"1학년 전공기초필수는 면제되지만 MSC 과목은 전공학점 미인정. 2~4학년 전공기초필수(선형대수·공업수학1·2 등)는 필수 이수입니다.", kw:["융합전자공학부","MSC","선형대수","공업수학","전공기초필수"], tags:["#공대","#MSC","#전공기초필수"]},
 
       // ── MSC/기초과학 (14~16)
-      {id:"14", q:"MSC(기초과학) 과목은 전공학점으로 인정되나요?", a:"아니요. 미분적분학·일반화학및실험·일반물리학및실험 등 MSC 과목은 전공학점으로 인정되지 않고 전체 졸업학점으로만 인정됩니다.", kw:["MSC","미분적분학","일반화학및실험","일반물리학및실험","전공학점","전공기초필수"], tags:["#MSC","#졸업요건"]},
+      {id:"14", q:"MSC(기초과학) 과목은 전공학점으로 인정?", a:"아니요. 미분적분학·일반화학및실험·일반물리학및실험 등 MSC 과목은 전공학점으로 인정되지 않고 전체 졸업학점으로만 인정됩니다.", kw:["MSC","미분적분학","일반화학및실험","일반물리학및실험","전공학점","전공기초필수"], tags:["#MSC","#졸업요건"]},
       {id:"15", q:"MSC 과목 목록은?", a:"미분적분학, 일반화학및실험, 일반물리학및실험 관련 교과목입니다.", kw:["MSC","과목","미분적분학","일반화학","일반물리","전공기초필수"], tags:["#MSC"]},
       {id:"16", q:"공대·자연대 주전공자가 1학년 MSC 과목을 들으면?", a:"전공학점이 아니라 전체 졸업학점으로만 인정됩니다.", kw:["공과대학","자연과학대학","MSC","전공학점","전공기초필수"], tags:["#MSC","#졸업요건"]},
 
       // ── 교양/공통 (17~21)
-      {id:"17", q:"1학년 교양필수는 몇 학점인가요?", a:"한양인터칼리지 1학년 공통 교양필수는 35학점입니다.", kw:["교양필수","1학년","35학점"], tags:["#교양필수","#1학년"]},
+      {id:"17", q:"1학년 교양필수는 몇 학점?", a:"(2025학번 기준) 한양인터칼리지 1학년 공통 교양필수는 35학점입니다.", kw:["교양필수","1학년","35학점"], tags:["#교양필수","#1학년"]},
       {id:"18", q:"핵심교양·사회봉사·커리어개발2 이수 기준은?", a:"핵심교양 4학점, 사회봉사 1학점, 커리어개발2 1학점입니다.", kw:["핵심교양","사회봉사","커리어개발2","이수"], tags:["#교양필수"]},
-      {id:"19", q:"커리어개발2는 어느 학과 개설 과목을 들어야 하나요?", a:"선택한 주전공 학부(과)에서 개설한 커리어개발2를 수강해야 합니다.", kw:["커리어개발2","주전공 학과","교양필수"], tags:["#커리어개발","#교양필수"]},
-      {id:"20", q:"교양필수에서 F를 받으면?", a:"졸업 전까지 재수강하여 학점을 취득해야 합니다.", kw:["교양필수","F","재수강","졸업"], tags:["#교양필수","#졸업요건"]},
+      {id:"19", q:"커리어개발2는 어느 학과 개설 과목을 들어야 하나요?", a:"선택한 주전공 학부(과)에서 개설한 커리어개발2(3학년 2학기)를 수강해야 합니다.", kw:["커리어개발2","주전공 학과","교양필수"], tags:["#커리어개발","#교양필수"]},
+      {id:"20", q:"교양필수에서 F를 받으면?", a:"졸업 전까지 재수강하여 학점을 취득해야 합니다(교양필수=졸업필수요건).", kw:["교양필수","F","재수강","졸업"], tags:["#교양필수","#졸업요건"]},
       {id:"21", q:"1학년 공통 교과 예시는?", a:"Systems/Design Thinking, Make Core, ACD Thinking, Calculus in Context, Unified Systems Science, Global Critical Anthropology, Life Project 등.", kw:["공통교과","Systems Thinking","Life Project"], tags:["#1학년","#교양필수"]},
 
       // ── 주전공 신청/자격/변경 (22~26)
-      {id:"22", q:"주전공 신청 자격(2025학번)은?", a:"주전공 신청 학기에 재학 중이며 누적 평점 평균 2.0 이상이면 신청 가능합니다.", kw:["주전공","신청 자격","누적평점","2.0"], tags:["#주전공","#성적"]},
-      {id:"23", q:"1학년 공통에서 F가 있어도 주전공 신청 가능?", a:"누평 2.0 이상이면 신청 가능하나, F 받은 교양필수는 졸업 전 반드시 재수강해야 합니다.", kw:["F","누적평점","재수강","주전공"], tags:["#성적","#주전공","#교양필수"]},
-      {id:"24", q:"주전공은 성적 경쟁이 있나요?", a:"자격 충족 시 전원 선발하며 계열 제한 없이 희망 전공을 자유롭게 선택합니다.", kw:["성적경쟁","전원 선발","자유선택"], tags:["#주전공","#선발"]},
+      {id:"22", q:"주전공 신청 자격(2025학번)은?", a:"주전공 신청 학기에 재학 중이며 주전공 확정 당시의 누적 평점 평균 2.0 이상이면 신청 가능합니다.", kw:["주전공","신청 자격","누적평점","2.0"], tags:["#주전공","#성적"]},
+      {id:"23", q:"1학년 공통에서 F가 있어도 주전공 신청 가능?", a:"2025학번 기준 누적 평점 평균균 2.0 이상이면 신청 가능하나, F 받은 교양필수는 졸업 전 반드시 재수강해야 합니다.", kw:["F","누적평점","재수강","주전공"], tags:["#성적","#주전공","#교양필수"]},
+      {id:"24", q:"주전공은 성적 경쟁이 있는지?", a:"자격 충족 시 전원 선발하며 계열 제한 없이 희망 전공을 자유롭게 선택합니다.", kw:["성적경쟁","전원 선발","자유선택"], tags:["#주전공","#선발"]},
       {id:"25", q:"주전공 선택/변경은 몇 번 가능?", a:"재학 중 총 2회(2학기 중(10월) 최초 선택 + 졸업 전 1회 변경) 가능합니다.", kw:["주전공 변경","2회","10월","졸업 전"], tags:["#주전공","#변경"]},
       {id:"26", q:"전공 선택이 불가능한 학과는?", a:"의과대학, 간호학과, 사범대학, 음악대학, 예술·체육대학 학부(과), 산업체 계약학과(반도체공학과)는 선택 불가입니다.", kw:["의대","간호","사범","음악","예술","체육","반도체공학"], tags:["#제한전공"]},
 
-      // ── 다전공/부전공/프로그램 (27~36)
-      {id:"27", q:"한양인터칼리지 학생은 프로그램 부전공이 필수인가요?", a:"네. 어떤 주전공이든 한양인터칼리지 프로그램 교육과정 1개 이상을 부전공(24학점 이상) 이상으로 이수해야 합니다.", kw:["프로그램","부전공","24학점","필수"], tags:["#부전공","#프로그램"]},
-      {id:"28", q:"주전공 최소 전공학점은?", a:"주전공은 최소 48학점 이상 이수해야 합니다.", kw:["주전공","48학점","전공학점"], tags:["#주전공","#졸업요건"]},
-      {id:"29", q:"일반 다중전공 최소 학점과 구성은?", a:"(건축 제외) 전공과목 36학점 이상: 200~300단위 21학점 + 400단위 6학점 포함.", kw:["다중전공","36학점","400단위","200~300단위"], tags:["#다중전공"]},
-      {id:"30", q:"건축학부 다중전공 학점 기준은?", a:"100~300단위 60학점 + 400단위 18학점을 포함해 총 100학점 이상입니다.", kw:["건축학부","다중전공","100학점"], tags:["#다중전공","#건축"]},
-      {id:"31", q:"프로그램 다중전공의 학점 기준은?", a:"프로그램 다중전공은 지정 과목을 36학점 이상(400단위 6 포함) 이수합니다.", kw:["프로그램 다중전공","36학점","400단위 6"], tags:["#다중전공","#프로그램"]},
-      {id:"32", q:"부전공 최소 학점 기준은?", a:"일반 부전공은 21학점(200~400단위 12 포함), 프로그램 부전공은 단위 구분 없이 24학점입니다.", kw:["부전공","21학점","프로그램 부전공 24"], tags:["#부전공","#프로그램"]},
-      {id:"33", q:"부전공 대신 다중전공으로 대체 가능?", a:"네. 한양인터칼리지 프로그램 부전공 대신 다중전공으로 졸업요건 충족이 가능합니다.", kw:["부전공 대체","다중전공","졸업요건"], tags:["#다중전공","#부전공"]},
-      {id:"34", q:"마이크로전공으로 프로그램 부전공 대체 가능?", a:"아니요. 마이크로전공(12학점)은 프로그램 부전공을 대체할 수 없습니다.", kw:["마이크로전공","12학점","부전공 대체"], tags:["#마이크로전공","#부전공"]},
-      {id:"35", q:"프로그램을 주전공으로 선택하면 추가 전공이 필요한가요?", a:"네. 타 단과대학 전공 또는 한양인터칼리지 내 다른 프로그램을 부전공 이상으로 추가 이수해야 합니다.", kw:["프로그램 주전공","부전공 이상","추가 전공"], tags:["#주전공","#부전공","#프로그램"]},
+      // ── 다전공/부전공/프로그램 (27~37)
+      {id:"27", q:"한양인터칼리지 학생은 부전공이 필수?", a:"네. 한양인터칼리지 재학생이라면 어떤 주전공을 선택하든 상관없이 부전공 이상을 1개 이상 이수해야 합니다.", kw:["프로그램","부전공","24학점","필수"], tags:["#부전공","#프로그램"]},
+      {id:"28", q:"한양인터칼리지 학생은 일반학과 주전공-일반학과 다전공 가능?", a:"아니오 한양인터칼리지 재학생은 주전공 혹은 다전공(부전공, 다중전공) 단위에서 반드시 한양인터칼리지 개설 프로그램 교육과정을 1개 이상 이수해야 합니다.", kw:["프로그램","부전공","다중전공","다전공","필수"], tags:["#부전공","#프로그램"]}
+      {id:"29", q:"주전공 최소 전공학점은?", a:"주전공은 최소 48학점 이상 이수해야 합니다.", kw:["주전공","48학점","전공학점"], tags:["#주전공","#졸업요건"]},
+      {id:"30", q:"일반 다중전공 최소 학점과 구성은?", a:"(건축 제외) 전공과목 36학점 이상: 200~300단위 21학점 + 400단위 6학점 포함.", kw:["다중전공","36학점","400단위","200~300단위"], tags:["#다중전공"]},
+      {id:"31", q:"건축학부 다중전공 학점 기준은?", a:"100~300단위 60학점 + 400단위 18학점을 포함해 총 100학점 이상입니다.", kw:["건축학부","다중전공","100학점"], tags:["#다중전공","#건축"]},
+      {id:"32", q:"프로그램 다중전공의 학점 기준은?", a:"프로그램 다중전공은 지정 과목을 36학점 이상(400단위 6 포함) 이수합니다.", kw:["프로그램 다중전공","36학점","400단위 6"], tags:["#다중전공","#프로그램"]},
+      {id:"33", q:"부전공 최소 학점 기준은?", a:"일반 부전공은 21학점(200~400단위 12 포함), 프로그램 부전공은 단위 구분 없이 24학점입니다.", kw:["부전공","21학점","프로그램 부전공 24"], tags:["#부전공","#프로그램"]},
+      {id:"34", q:"부전공 대신 다중전공으로 대체 가능?", a:"네. 부전공 대신 다중전공으로 졸업요건 충족이 가능합니다.", kw:["부전공 대체","다중전공","졸업요건"], tags:["#다중전공","#부전공"]},
+      {id:"35", q:"마이크로전공으로 프로그램 부전공 대체 가능?", a:"아니요. 마이크로전공(12학점)은 프로그램 부전공을 대체할 수 없습니다.", kw:["마이크로전공","12학점","부전공 대체"], tags:["#마이크로전공","#부전공"]},
+      {id:"36", q:"프로그램을 주전공으로 선택하면 추가 전공이 필요한가요?", a:"네. 타 단과대학 전공 또는 한양인터칼리지 내 다른 프로그램을 부전공 이상으로 추가 이수해야 합니다.", kw:["프로그램 주전공","부전공 이상","추가 전공"], tags:["#주전공","#부전공","#프로그램"]},
 
-      // ── 학위/학점/총졸업학점/프로젝트학점 포지션 (36~40)
-      {id:"36", q:"졸업 시 학위 표기는?", a:"주전공 단과대학·학부(과) 명칭으로 수여되고, 부·다전공은 졸업증명서에 표기됩니다.", kw:["학위","졸업증명서","표기"], tags:["#졸업요건"]},
-      {id:"37", q:"전공 400단위 이수 요건은?", a:"전공 400단위 6학점 이상(주전공 기준) 이수해야 합니다.", kw:["400단위","전공","6학점"], tags:["#전공학점","#졸업요건"]},
-      {id:"38", q:"한양인터칼리지 주전공의 4학년 프로젝트 학점 반영은?", a:"4학년 프로젝트(12학점)는 전공학점에 포함되지 않습니다(총졸업학점 반영).", kw:["4학년 프로젝트","12학점","전공학점"], tags:["#프로젝트","#전공학점"]},
-      {id:"39", q:"타과 주전공의 4학년 프로젝트 학점은?", a:"4학년 프로젝트(12학점)는 필수 이수이나 전공학점에는 미포함입니다.", kw:["4학년","프로젝트","전공학점 아님"], tags:["#프로젝트"]},
-      {id:"40", q:"총 졸업학점은?", a:"총 졸업학점은 140학점입니다.", kw:["졸업학점","140학점"], tags:["#졸업요건"]},
+      // ── 학위/학점/총졸업학점/프로젝트학점 포지션 (38~41)
+      {id:"37", q:"졸업 시 학위 표기는?", a:"주전공 단과대학·학부(과) 명칭으로 수여되고, 부·다전공은 졸업증명서에 표기됩니다.", kw:["학위","졸업증명서","표기"], tags:["#졸업요건"]},
+      {id:"38", q:"전공 400단위 이수 요건은?", a:"전공 400단위 6학점 이상(주전공 기준) 이수해야 합니다.", kw:["400단위","전공","6학점"], tags:["#전공학점","#졸업요건"]},
+      {id:"39", q:"한양인터칼리지 주전공의 4학년 프로젝트 학점 반영은?", a:"4학년 프로젝트(12학점)는 전공학점에 포함되지 않습니다(총졸업학점 반영).", kw:["4학년 프로젝트","12학점","전공학점"], tags:["#프로젝트","#전공학점"]},
+      {id:"40", q:"타과 주전공의 4학년 프로젝트 학점은?", a:"4학년 프로젝트(12학점)는 필수 이수이나 전공학점에는 미포함입니다.", kw:["4학년","프로젝트","전공학점 아님"], tags:["#프로젝트"]},
+      {id:"41", q:"총 졸업학점은?", a:"총 졸업학점은 140학점입니다.", kw:["졸업학점","140학점"], tags:["#졸업요건"]},
 
-      // ── 일정/절차 (41~45)
-      {id:"41", q:"전공설명회 수요조사 일정은?", a:"예시: 2025.09.18~09.22. 세부는 학교 공지를 확인하세요.", kw:["전공설명회","수요조사","일정"], tags:["#일정","#전공설명회"]},
-      {id:"42", q:"전공설명회 본행사는?", a:"10월 중 예정(추후 별도 안내).", kw:["전공설명회","일정","10월"], tags:["#일정","#전공설명회"]},
-      {id:"43", q:"주전공 선택 신청 기간은?", a:"예시: 2025.10.30~11.05.", kw:["주전공","선택신청","일정"], tags:["#일정","#주전공"]},
-      {id:"44", q:"다중전공 선택 신청 기간은?", a:"예시: 2025.11.10~11.14.", kw:["다중전공","선택신청","일정"], tags:["#일정","#다중전공"]},
-      {id:"45", q:"주전공/다중전공 확정 및 심의 시점은?", a:"예시: 2026.01 자격요건 심의 후 확정.", kw:["자격요건","심의","확정"], tags:["#일정","#주전공","#다중전공"]},
+      // ── 일정/절차 (42~46)
+      {id:"42", q:"전공설명회 수요조사 일정은?", a:"예시: 2025.09.18~09.22. 세부는 학교 공지를 확인하세요.", kw:["전공설명회","수요조사","일정"], tags:["#일정","#전공설명회"]},
+      {id:"43", q:"전공설명회 본행사는?", a:"10월 중 예정(추후 별도 안내).", kw:["전공설명회","일정","10월"], tags:["#일정","#전공설명회"]},
+      {id:"44", q:"주전공 선택 신청 기간은?", a:"예시: 2025.10.30~11.05.", kw:["주전공","선택신청","일정"], tags:["#일정","#주전공"]},
+      {id:"45", q:"다중전공 선택 신청 기간은?", a:"예시: 2025.11.10~11.14.", kw:["다중전공","선택신청","일정"], tags:["#일정","#다중전공"]},
+      {id:"46", q:"주전공/다중전공 확정 및 심의 시점은?", a:"예시: 2026.01 자격요건 심의 후 확정.", kw:["자격요건","심의","확정"], tags:["#일정","#주전공","#다중전공"]},
 
-      // ── 성적/평점/재수강 (46~47)
-      {id:"46", q:"누적 평점 2.0 미만이면 주전공 신청 불가?", a:"네. 신청 학기 재학 중이며 누적 평점 2.0 이상이어야 합니다.", kw:["누적평점","2.0","주전공 신청"], tags:["#성적","#주전공"]},
-      {id:"47", q:"F가 있어도 졸업 가능?", a:"교양필수 등 필수 과목에서 F를 받은 경우 반드시 재수강하여 학점을 취득해야 졸업이 가능합니다.", kw:["F","재수강","졸업"], tags:["#졸업요건","#교양필수"]},
+      // ── 성적/평점/재수강 (47~48)
+      {id:"47", q:"누적 평점 2.0 미만이면 주전공 신청 불가?", a:"네. 신청 학기 재학 중이면 주전공 신청은 가능하지만, 최종 배정을 위해서는 누적 평점 평균 2.0 이상이어야 합니다.", kw:["누적평점","2.0","주전공 신청"], tags:["#성적","#주전공"]},
+      {id:"48", q:"F가 있어도 졸업 가능?", a:"교양필수 등 필수 과목에서 F를 받은 경우 반드시 재수강하여 학점을 취득해야 졸업이 가능합니다.", kw:["F","재수강","졸업"], tags:["#졸업요건","#교양필수"]},
 
-      // ── 검색 팁 (48~49)
-      {id:"48", q:"검색 팁: MSC 관련 키워드는?", a:"“MSC, 미분적분학, 일반화학, 일반물리, 전공학점, 기초과학, 전공기초필수” 등을 조합하면 정확도가 높습니다.", kw:["검색팁","MSC","키워드","전공기초필수"], tags:["#MSC","#검색"]},
-      {id:"49", q:"검색 팁: 전공학점/전공기초필수는?", a:"“전공학점 48, 전공기초필수, 400단위, 200~300단위” 등의 키워드가 유효합니다.", kw:["검색","전공학점","전공기초필수"], tags:["#검색","#전공학점"]},
+      // ── 검색 팁 (49~50)
+      {id:"49", q:"검색 팁: MSC 관련 키워드는?", a:"“MSC, 미분적분학, 일반화학, 일반물리, 전공학점, 기초과학, 전공기초필수” 등을 조합하면 정확도가 높습니다.", kw:["검색팁","MSC","키워드","전공기초필수"], tags:["#MSC","#검색"]},
+      {id:"50", q:"검색 팁: 전공학점/전공기초필수는?", a:"“전공학점 48, 전공기초필수, 400단위, 200~300단위” 등의 키워드가 유효합니다.", kw:["검색","전공학점","전공기초필수"], tags:["#검색","#전공학점"]},
 
-      // ── 종합/주의 (50~51)
-      {id:"50", q:"최종 판단 근거는?", a:"항상 최신 ‘학교 공식 공지/규정’을 우선합니다. 본 페이지는 안내 보조용입니다.", kw:["최종근거","공식공지","규정"], tags:["#안내","#주의"]},
-      {id:"51", q:"온라인 신청 절차는?", a:"학내 포털/공지 절차에 따릅니다. 제출서류·승인 플로우는 공지 확인이 필요합니다.", kw:["신청 절차","온라인","포털"], tags:["#일정","#절차"]}
+      // ── 종합/주의 (51~52)
+      {id:"51", q:"최종 판단 근거는?", a:"항상 최신 ‘학교 공식 공지/규정’을 우선합니다. 본 페이지는 안내 보조용입니다.", kw:["최종근거","공식공지","규정"], tags:["#안내","#주의"]},
+      {id:"52", q:"온라인 신청 절차는?", a:"학내 포털/공지 절차에 따릅니다.https://portal.hanyang.ac.kr/의 공지사항을 확인해 주세요 .", kw:["신청 절차","온라인","포털"], tags:["#일정","#절차"]}
     ];
 
     /* 태그 목록 */
