@@ -1,4 +1,8 @@
-<!-- version: 2025-10-01a | Hanyang Intercollege FAQ (51문항, 전공기초필수=Q9~, 프로젝트 세부 상단 이동) -->
+<!-- version: 2025-10-01d | Hanyang Intercollege FAQ
+     - Navy 테마
+     - 상단 좌측 로고(hyuic.png), 우측 히어로 일러스트(intercollege-hero.png) 반영
+     - 아코디언 기본 + 전역 블러 토글 유지
+     - 전공기초필수 묶음 Q9~, 프로젝트 세부 Q1~8 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,96 +13,177 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❓</text></svg>">
+
+  <!-- Favicon을 로고로 -->
+  <link rel="icon" type="image/png" href="assets/hyuic.png">
+
   <style>
+    /* ===== Navy Theme ===== */
     :root{
-      --bg:#0b0c0f; --panel:#111318; --muted:#96a0b5; --text:#e8ecf3;
-      --brand:#5aa9ff; --chip:#1b2330; --chip-on:#23405f;
-      --ok:#3ddc97; --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.25);
+      --bg:#0a1428; --panel:#0f1b33; --panel-2:#0c172b;
+      --muted:#aab7d0; --text:#f1f5ff;
+      --brand:#2a4db3; --brand-2:#1b3b91;
+      --chip:#122449; --chip-on:#17356e;
+      --ok:#3ddc97; --radius:16px;
+      --shadow:0 10px 36px rgba(5,10,25,.35);
+      --hl: rgba(64,129,255,.25);
     }
     @media (prefers-color-scheme:light){
       :root{
-        --bg:#f7f9fc; --panel:#ffffff; --muted:#64748b; --text:#0f172a;
-        --brand:#2563eb; --chip:#edf2f7; --chip-on:#dbeafe;
-        --shadow:0 10px 26px rgba(2,6,23,.08);
+        --bg:#eef2ff; --panel:#ffffff; --panel-2:#f4f7ff;
+        --muted:#4b5563; --text:#0b1020;
+        --brand:#2a4db3; --brand-2:#203a8c;
+        --chip:#eaf0ff; --chip-on:#d8e3ff;
+        --shadow:0 10px 26px rgba(15,24,48,.10);
+        --hl: rgba(37,99,235,.18);
       }
     }
+
     *{box-sizing:border-box}
     body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, '맑은 고딕', sans-serif;
-      background:linear-gradient(180deg, var(--bg), #0c1017 60%); color:var(--text);
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, '맑은 고딕', sans-serif;
+      background:
+        radial-gradient(1000px 420px at 10% -10%, rgba(42,77,179,.25), transparent 60%),
+        radial-gradient(900px 380px at 100% 10%, rgba(27,59,145,.20), transparent 60%),
+        linear-gradient(180deg, var(--bg), #081024 55%);
+      color:var(--text);
     }
-    .wrap{ max-width:980px; margin:40px auto; padding:0 20px; }
+    .wrap{ max-width:1060px; margin:40px auto; padding:0 20px; }
+
+    /* ===== HERO ===== */
     .hero{
-      background: radial-gradient(1200px 500px at 10% -20%, rgba(90,169,255,.25), transparent 60%),
-                  radial-gradient(900px 400px at 100% 20%, rgba(61,220,151,.18), transparent 60%);
-      padding: 28px 24px; border-radius: var(--radius); box-shadow: var(--shadow);
+      position:relative;
+      display:grid; grid-template-columns: 1fr minmax(220px,340px);
+      gap:18px;
+      background: linear-gradient(180deg, var(--panel), var(--panel-2) 80%);
+      padding: 24px; border-radius: var(--radius); box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.06); backdrop-filter: blur(6px);
+      overflow:hidden;
     }
-    .hero h1{margin:0 0 8px; font-size: clamp(22px, 3.2vw, 34px)}
-    .hero p{margin:0; color:var(--muted)}
-    .searchbar{ display:flex; gap:10px; margin-top:18px; flex-wrap:wrap; }
+    .hero-illus{
+      display:flex; align-items:center; justify-content:center;
+      border-radius:14px;
+      background: radial-gradient(140px 120px at 40% 40%, rgba(126,164,255,.15), transparent 70%);
+    }
+    .hero-illus img{
+      width:100%; max-width:320px; height:auto; object-fit:contain; display:block;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,.3));
+    }
+    .brandbox{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 4px;
+    }
+    .logo{
+      width:46px; height:46px; border-radius:10px; background:#11214a;
+      border:1px solid rgba(255,255,255,.10); display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .logo img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .badgeH{ font-size:12px; font-weight:700; color:#fff;
+             background:linear-gradient(135deg, var(--brand), var(--brand-2));
+             padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.15) }
+    .hero h1{margin:0; font-size: clamp(22px, 3.2vw, 34px)}
+    .hero p{margin:4px 0 0; color:var(--muted)}
+
+    /* ===== Controls ===== */
+    .searchbar{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
     .searchbar input[type="search"]{
-      flex:1; min-width:220px; padding:14px 16px; border-radius: 12px;
-      border:1px solid rgba(255,255,255,.1); background: var(--panel); color:var(--text);
+      flex:1; min-width:240px; padding:14px 16px; border-radius: 12px;
+      border:1px solid rgba(255,255,255,.08); background: #0c1730; color:var(--text);
       outline:none; box-shadow: inset 0 0 0 2px transparent; transition: box-shadow .2s,border-color .2s;
     }
     .searchbar input[type="search"]::placeholder{color:var(--muted)}
     .searchbar input[type="search"]:focus{box-shadow: inset 0 0 0 2px var(--brand)}
     .btn{
       padding: 12px 16px; border-radius:12px; border:0; cursor:pointer;
-      background: var(--brand); color:white; font-weight:600; box-shadow: var(--shadow);
+      background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:white; font-weight:600; box-shadow: var(--shadow);
     }
-    .toolbar{ margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .toolbar{ margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
     .chip{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px; border-radius:999px; background:var(--chip);
       border:1px solid rgba(255,255,255,.08); color:var(--text); cursor:pointer;
       user-select:none; transition: transform .05s ease, background .2s; font-size:14px;
     }
-    .chip[data-on="true"]{ background: var(--chip-on); border-color: rgba(80,150,255,.45)}
+    .chip[data-on="true"]{ background: var(--chip-on); border-color: rgba(64,129,255,.45)}
     .chip:active{ transform: scale(.98)}
-    .panel{
-      margin-top:26px; background:var(--panel); border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
-    }
-    .meta{
-      display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
-      border-bottom:1px dashed rgba(255,255,255,.1); color:var(--muted); font-size:14px;
-    }
+
+    /* ===== List ===== */
+    .panel{ margin-top:24px; background:var(--panel); border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow); }
+    .meta{ display:flex; justify-content:space-between; align-items:center; padding:14px 18px;
+      border-bottom:1px dashed rgba(255,255,255,.12); color:var(--muted); font-size:14px; }
     .results{ padding: 10px 14px 6px; }
     .card{ border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:14px 14px;
-           margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
+      margin: 12px 6px; background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%); }
     .qline{ display:flex; gap:10px; align-items:flex-start; }
     .qline h3{ margin:0; font-size:18px; line-height:1.35; }
-    .badge{ font-size:12px; font-weight:700; color:#0a0a0a; background:var(--ok); padding:4px 8px; border-radius:999px; }
-    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:var(--brand);
+    .badge{ font-size:12px; font-weight:700; color:#fff;
+            background:linear-gradient(135deg, var(--brand), var(--brand-2));
+            padding:4px 8px; border-radius:999px; }
+    .alink{ margin-left:auto; display:inline-flex; gap:6px; align-items:center; color:#7ea4ff;
             cursor:pointer; font-size:13px; }
-    .answer{margin-top:10px; color:var(--text); line-height:1.6}
-    .answer .hl{ background:rgba(255,230,150,.6); padding:0 2px; border-radius:4px}
+    .answer{margin-top:10px; color:var(--text); line-height:1.65}
+    .answer .hl{ background: transparent; box-shadow: inset 0 -0.35em 0 var(--hl); border-radius:2px; }
     .tags{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px}
-    .tag{ font-size:12px; color:var(--muted); background: rgba(255,255,255,.06); padding:4px 8px; border-radius:999px;
-          border:1px solid rgba(255,255,255,.06) }
+    .tag{ font-size:12px; color:#bcd0ff; background: rgba(22,42,92,.6); padding:4px 8px; border-radius:999px;
+          border:1px solid rgba(147,176,255,.15) }
     .empty{ padding:22px; color:var(--muted) }
-    .footer{ margin: 20px 0 60px; color:var(--muted); font-size:13px; text-align:center; }
+    .footer{ margin: 20px 0 60px; color:#b1badd; font-size:13px; text-align:center; }
     .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    /* ===== 숨김/블러 모드 & 아코디언 ===== */
+    .card .reveal{ margin-left:auto; font-size:13px; cursor:pointer; color:#7ea4ff; }
+    .card .veil{ display:none; }
+    .card[data-blur="true"] .veil{ display:inline-flex; align-items:center; gap:6px; margin-left:auto; font-size:13px; cursor:pointer; color:#7ea4ff; }
+    .card[data-collapsed="true"] .answer{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+
+    /* 반응형: 좁은 화면에서 히어로 1열 */
+    @media (max-width: 880px){
+      .hero{ grid-template-columns: 1fr; }
+      .hero-illus{ order:-1; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <section class="hero">
-      <h1>Hanyang Intercollege 전공선택 관련 FAQ</h1>
-      <p>전공 선택 · 다(부)전공 · MSC · 프로젝트 · 졸업요건 등 핵심 질의응답을 키워드/태그로 빠르게 찾아보세요.</p>
+      <!-- 좌측: 타이틀/검색 -->
+      <div>
+        <div class="brandbox">
+          <div class="logo" aria-hidden="true">
+            <img src="assets/hyuic.png" alt="Hanyang Intercollege 로고" onerror="this.style.display='none'">
+          </div>
+          <span class="badgeH">HANYANG Intercollege</span>
+          <span style="color:#bcd0ff; font-weight:600">전공선택 FAQ</span>
+        </div>
+        <h1>Hanyang Intercollege 전공선택 관련 FAQ</h1>
+        <p>전공 선택 · 다(부)전공 · MSC · 프로젝트 · 졸업요건 등 핵심 질의응답을 키워드/태그로 빠르게 찾아보세요.</p>
 
-      <form id="searchForm" class="searchbar" role="search">
-        <label class="sr-only" for="q">검색어</label>
-        <input id="q" type="search" placeholder="예) 전공기초필수, MSC 전공학점, 주전공 변경, 커리어개발2" autocomplete="off" />
-        <button id="searchBtn" class="btn" type="submit" title="검색">검색</button>
-        <button id="clearBtn" class="btn" type="button" title="검색 지우기">지우기</button>
-        <button id="shareBtn" class="btn" type="button" title="현재 검색 링크 복사">링크 복사</button>
-      </form>
+        <form id="searchForm" class="searchbar" role="search" aria-label="FAQ 검색">
+          <label class="sr-only" for="q">검색어</label>
+          <input id="q" type="search" placeholder="예) 전공기초필수, MSC 전공학점, 주전공 변경, 커리어개발2" autocomplete="off" />
+          <button id="searchBtn" class="btn" type="submit" title="검색">검색</button>
+          <button id="clearBtn" class="btn" type="button" title="검색 지우기">지우기</button>
+          <button id="shareBtn" class="btn" type="button" title="현재 검색 링크 복사">링크 복사</button>
+        </form>
 
-      <div id="tagBar" class="toolbar" aria-label="태그 필터"></div>
+        <div id="tagBar" class="toolbar" aria-label="태그 필터"></div>
+
+        <!-- 전역 답변 숨김(블러) 모드 스위치 -->
+        <div class="toolbar" id="privacyBar" style="margin-top:6px">
+          <label class="chip" style="cursor:pointer">
+            <input id="hideToggle" type="checkbox" style="accent-color:var(--brand); transform:scale(1.1); margin-right:8px" />
+            답변 숨김 모드
+          </label>
+          <small style="color:var(--muted)">공유·발표 시 질문만 보이게</small>
+        </div>
+      </div>
+
+      <!-- 우측: 히어로 일러스트 -->
+      <div class="hero-illus">
+        <img src="assets/intercollege-hero.png" alt="Hanyang Intercollege 캐릭터 일러스트">
+      </div>
     </section>
 
     <section class="panel" aria-live="polite" aria-busy="false">
@@ -114,10 +199,9 @@
 
   <script>
     /* =========================
-       FAQ 데이터 (51문항, 재배치 반영)
+       FAQ 데이터 (51문항, 재배치/수정 반영)
        - Q1~Q8: 주전공/프로젝트(세부 포함)
        - Q9~: 전공기초필수 묶음
-       - MSC/교양/자격/다전공/학점/일정/성적/검색팁/종합 순
        ========================= */
     const faqData = [
       // ── 주전공/프로젝트 (1~8)
@@ -130,7 +214,7 @@
       {id:"7", q:"타과 주전공의 1·4학년 프로젝트 반영은?", a:"1학년 3학점·4학년 12학점 필수 이수, 전공학점에는 미포함(총졸업학점 반영).", kw:["타과","1학년","4학년","프로젝트"], tags:["#프로젝트"]},
       {id:"8", q:"한양인터칼리지 주전공의 2·3학년 프로젝트 위치는?", a:"각 3학점, 전공학점으로 포함됩니다.", kw:["2학년","3학년","프로젝트","전공학점"], tags:["#프로젝트","#전공학점"]},
 
-      // ── 전공기초필수(9~13)  ※요청: 9번 뒤로 배치
+      // ── 전공기초필수(9~13)
       {id:"9",  q:"MSC가 아닌 전공기초필수 과목은 전공학점 인정?", a:"네. 주전공으로 선택한 학부(과)에 개설된 기초과학이 아닌 전공기초필수 과목은 주전공 전공학점(48학점)에 포함됩니다.", kw:["전공기초필수","전공학점","48학점","MSC 아님"], tags:["#전공기초필수","#전공학점"]},
       {id:"10", q:"전공기초필수를 모두 이수해야 졸업이 가능한거야?", a:"네, 주전공으로 선택한 학부(과)에 개설된 2~4학년 전공기초필수 교과목은 모두 이수해야 졸업자격을 갖추게 됩니다. 1학년 전공기초필수 교과목 이수는 필수는 아니지만 이수 시 주전공 전공학점(48학점)에 포함됩니다", kw:["전공기초필수","졸업요건","2~4학년","1학년","전공학점","48학점","주전공"], tags:["#전공기초필수","#졸업요건","#주전공"]},
       {id:"11", q:"타과 주전공 선택 시 1학년 전공기초필수는 면제되나요?", a:"네. 1학년 전공기초필수는 면제되고, 1학년 필수는 한양인터칼리지 지정 교양필수로 충족합니다.", kw:["타과","전공기초필수","면제","교양필수"], tags:["#전공기초필수","#교양필수"]},
@@ -167,7 +251,7 @@
       {id:"34", q:"마이크로전공으로 프로그램 부전공 대체 가능?", a:"아니요. 마이크로전공(12학점)은 프로그램 부전공을 대체할 수 없습니다.", kw:["마이크로전공","12학점","부전공 대체"], tags:["#마이크로전공","#부전공"]},
       {id:"35", q:"프로그램을 주전공으로 선택하면 추가 전공이 필요한가요?", a:"네. 타 단과대학 전공 또는 한양인터칼리지 내 다른 프로그램을 부전공 이상으로 추가 이수해야 합니다.", kw:["프로그램 주전공","부전공 이상","추가 전공"], tags:["#주전공","#부전공","#프로그램"]},
 
-      // ── 학위/학점/총졸업학점/프로젝트학점 포지션 (37~41)
+      // ── 학위/학점/총졸업학점/프로젝트학점 포지션 (36~40)
       {id:"36", q:"졸업 시 학위 표기는?", a:"주전공 단과대학·학부(과) 명칭으로 수여되고, 부·다전공은 졸업증명서에 표기됩니다.", kw:["학위","졸업증명서","표기"], tags:["#졸업요건"]},
       {id:"37", q:"전공 400단위 이수 요건은?", a:"전공 400단위 6학점 이상(주전공 기준) 이수해야 합니다.", kw:["400단위","전공","6학점"], tags:["#전공학점","#졸업요건"]},
       {id:"38", q:"한양인터칼리지 주전공의 4학년 프로젝트 학점 반영은?", a:"4학년 프로젝트(12학점)는 전공학점에 포함되지 않습니다(총졸업학점 반영).", kw:["4학년 프로젝트","12학점","전공학점"], tags:["#프로젝트","#전공학점"]},
@@ -182,7 +266,7 @@
       {id:"45", q:"주전공/다중전공 확정 및 심의 시점은?", a:"예시: 2026.01 자격요건 심의 후 확정.", kw:["자격요건","심의","확정"], tags:["#일정","#주전공","#다중전공"]},
 
       // ── 성적/평점/재수강 (46~47)
-      {id:"46", q:"누적 평점 2.0 미만이면 주전공 신청 불가?", a:"네. 신청 학기 재학 중이며, 주전공 확정 시기에 누적 평점 2.0 이상이어야 합니다.", kw:["누적평점","2.0","주전공 신청"], tags:["#성적","#주전공"]},
+      {id:"46", q:"누적 평점 2.0 미만이면 주전공 신청 불가?", a:"네. 신청 학기 재학 중이며 누적 평점 2.0 이상이어야 합니다.", kw:["누적평점","2.0","주전공 신청"], tags:["#성적","#주전공"]},
       {id:"47", q:"F가 있어도 졸업 가능?", a:"교양필수 등 필수 과목에서 F를 받은 경우 반드시 재수강하여 학점을 취득해야 졸업이 가능합니다.", kw:["F","재수강","졸업"], tags:["#졸업요건","#교양필수"]},
 
       // ── 검색 팁 (48~49)
@@ -194,7 +278,7 @@
       {id:"51", q:"온라인 신청 절차는?", a:"학내 포털/공지 절차에 따릅니다. 제출서류·승인 플로우는 공지 확인이 필요합니다.", kw:["신청 절차","온라인","포털"], tags:["#일정","#절차"]}
     ];
 
-    // 태그 목록 생성
+    // 태그 목록
     const allTags = Array.from(new Set(faqData.flatMap(x => x.tags))).sort((a,b)=>a.localeCompare(b,'ko'));
 
     // DOM
@@ -205,6 +289,11 @@
     const resultsEl = document.getElementById('results');
     const countEl   = document.getElementById('count');
     const tagBar    = document.getElementById('tagBar');
+    const hideToggle= document.getElementById('hideToggle');
+
+    // 전역 숨김 모드 상태 (로컬 저장)
+    let HIDE_MODE = JSON.parse(localStorage.getItem('hideAnswers') || 'false');
+    if (hideToggle) hideToggle.checked = HIDE_MODE;
 
     // 태그 UI
     const selectedTags = new Set();
@@ -224,13 +313,12 @@
       });
     }
 
-    // 검색/스코어링/하이라이트
+    // 검색/스코어링
     const normalize = s => (s ?? '').toString().toLowerCase().replace(/\s+/g,' ').trim();
 
     function scoreEntry(entry, query){
       const nq = normalize(query);
       if(!nq && selectedTags.size===0) return 1;
-      // 태그 AND
       if(![...selectedTags].every(t => entry.tags.includes(t))) return 0;
       if(!nq) return 1;
 
@@ -268,27 +356,75 @@
 
       for(const e of list){
         const card = document.createElement('article');
-        card.className = 'card'; card.id = `q${e.id}`;
+        card.className = 'card';
+        card.id = `q${e.id}`;
+        card.setAttribute('data-blur', HIDE_MODE ? 'true' : 'false');
+        card.setAttribute('data-collapsed', HIDE_MODE ? 'false' : 'true');
+
         card.innerHTML = `
           <div class="qline">
             <span class="badge">Q${e.id}</span>
-            <h3>${highlight(e.q, query)}</h3>
+            <h3 class="qtext" style="cursor:pointer" aria-expanded="${HIDE_MODE ? 'true' : 'false'}">${highlight(e.q, query)}</h3>
+            <span class="veil" role="button" title="답변 보기">👁 보기</span>
+            <span class="reveal" role="button" title="접기/펼치기">${HIDE_MODE ? '' : '▾ 펼치기'}</span>
             <span class="alink" role="button" title="링크 복사" data-id="${e.id}">🔗 복사</span>
           </div>
-          <div class="answer">${highlight(e.a, query)}</div>
+          <div class="answer" aria-hidden="${HIDE_MODE ? 'false' : 'true'}">${highlight(e.a, query)}</div>
           <div class="tags">${e.tags.map(t=>`<span class="tag">${t}</span>`).join(' ')}</div>
         `;
+
+        const answerEl = card.querySelector('.answer');
+        const revealBtn = card.querySelector('.reveal');
+        const veilBtn   = card.querySelector('.veil');
+        const qtitle    = card.querySelector('.qtext');
+
+        function syncCardView(){
+          if (HIDE_MODE){
+            card.setAttribute('data-blur','true');
+            card.setAttribute('data-collapsed','false');
+            answerEl.style.filter = 'blur(6px)';
+            answerEl.style.maxHeight = 'none';
+            if(revealBtn) revealBtn.style.display = 'none';
+            if(veilBtn) veilBtn.style.display   = 'inline-flex';
+            qtitle.setAttribute('aria-expanded','true');
+            answerEl.setAttribute('aria-hidden','false');
+          } else {
+            card.setAttribute('data-blur','false');
+            if(veilBtn) veilBtn.style.display   = 'none';
+            if(revealBtn) revealBtn.style.display = 'inline-flex';
+            answerEl.style.filter = 'none';
+            const collapsed = card.getAttribute('data-collapsed') === 'true';
+            answerEl.style.maxHeight = collapsed ? '0' : 'none';
+            if(revealBtn) revealBtn.textContent = collapsed ? '▾ 펼치기' : '▴ 접기';
+            qtitle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+            answerEl.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
+          }
+        }
+        syncCardView();
+
+        function toggleAccordion(){
+          if (HIDE_MODE) return;
+          const collapsed = card.getAttribute('data-collapsed') === 'true';
+          card.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+          syncCardView();
+        }
+        qtitle.addEventListener('click', toggleAccordion);
+        revealBtn?.addEventListener('click', toggleAccordion);
+
+        veilBtn?.addEventListener('click', ()=>{
+          answerEl.style.filter = 'none';
+          veilBtn.style.display = 'none';
+        });
+
         card.querySelector('.alink').addEventListener('click', (ev)=>{
           const id = ev.currentTarget.getAttribute('data-id');
           const url = new URL(location.href);
           url.hash = `#q${id}`;
           const qv = qInput.value.trim();
           if(qv) url.searchParams.set('q', qv); else url.searchParams.delete('q');
-          if(selectedTags.size){
-            url.searchParams.set('tags', [...selectedTags].join(','));
-          }else{
-            url.searchParams.delete('tags');
-          }
+          if(selectedTags.size) url.searchParams.set('tags', [...selectedTags].join(','));
+          else url.searchParams.delete('tags');
+          if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(url.toString()).then(()=>{
               ev.currentTarget.textContent = '✅ 복사됨';
@@ -298,6 +434,7 @@
             window.prompt("아래 링크를 복사하세요:", url.toString());
           }
         });
+
         resultsEl.appendChild(card);
       }
     }
@@ -319,6 +456,7 @@
         if(q.trim()) url.searchParams.set('q', q.trim()); else url.searchParams.delete('q');
         if(selectedTags.size) url.searchParams.set('tags', [...selectedTags].join(','));
         else url.searchParams.delete('tags');
+        if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
         history.replaceState(null,'',url.toString());
       }
     }
@@ -330,28 +468,24 @@
       qInput.value = q;
       const tagQuery = params.get('tags');
       if(tagQuery){ tagQuery.split(',').forEach(t=> selectedTags.add(t)); }
+      if(params.get('hide') === '1'){ HIDE_MODE = true; if(hideToggle) hideToggle.checked = true; }
     }
 
     initFromQuery();
     renderTags();
     update(false);
 
-    document.getElementById('searchForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      update();
-    });
-
-    qInput.addEventListener('input', update);
-
+    searchForm.addEventListener('submit', (e)=>{ e.preventDefault(); update(); });
+    qInput.addEventListener('input', ()=> update());
     clearBtn.addEventListener('click', ()=>{
       qInput.value = '';
       selectedTags.clear();
       renderTags();
       update();
     });
-
     shareBtn.addEventListener('click', ()=>{
       const url = new URL(location.href);
+      if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url.toString()).then(()=>{
           shareBtn.textContent='복사됨 ✅'; setTimeout(()=>shareBtn.textContent='링크 복사',1200);
@@ -359,6 +493,12 @@
       } else {
         window.prompt("아래 링크를 복사하세요:", url.toString());
       }
+    });
+
+    hideToggle?.addEventListener('change', ()=>{
+      HIDE_MODE = hideToggle.checked;
+      localStorage.setItem('hideAnswers', JSON.stringify(HIDE_MODE));
+      update(false);
     });
 
     if(location.hash){
