@@ -124,8 +124,8 @@
     /* 숨김/블러 + 아코디언 */
     .card .reveal{margin-left:auto;font-size:13px;cursor:pointer;color:#7ea4ff;flex-shrink:0;}
     .card .veil{display:none;}
-    .card[data-blur="true"] .veil{display:inline-flex;margin-left:auto;font-size:13px;cursor:pointer;color:#7ea4ff;flex-shrink:0;}
     .card[data-collapsed="true"] .answer{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+    .card[data-collapsed="true"] .tags{display:none;}
     
     @media (max-width: 768px) {
       .card .reveal, .card .veil{font-size:12px;}
@@ -166,7 +166,7 @@
         </form>
         <div id="tagBar" class="toolbar"></div>
         <div class="toolbar" id="privacyBar">
-          <label class="chip"><input id="hideToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>답변 숨김 모드</label>
+          <label class="chip"><input id="compactToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>컴팩트 모드 (질문만 표시)</label>
           <label class="chip"><input id="tagModeToggle" type="checkbox" style="accent-color:var(--brand);margin-right:6px"/>태그 AND 검색 (체크 시 모든 태그 포함)</label>
         </div>
       </div>
@@ -194,9 +194,9 @@
       {id:"4", q:"주전공 변경은 어떤 절차로 진행되나요?", a:"2025학번의 경우 최초 주전공 배정이후 졸업 전까지 한 번 변경할 수 있으며, 신청 자격(재학 중, 누적평점 평균 2.0 이상)을 충족하면 변경 가능합니다.", kw:["주전공","주전공변경","변경","절차","신청자격","평점2.0","변경절차"]},
       {id:"5", q:"주전공 변경 시 이전에 이수한 학점은 어떻게 되나요?", a:"이전에 이수한 학점은 새로운 주전공의 교육과정에 따라 전공학점 또는 일반 선택학점으로 인정될 수 있으며, 이에 따라 졸업 요건이 달라질 수 있으므로, 자세한 사항은 반드시 교육혁신처 학사운영팀에 확인해 주세요", kw:["주전공","주전공변경","변경","학점인정","교육혁신처","학사운영팀","이전학점"]},
       {id:"6", q:"선택가능한 주전공 계열에 제한이 있나요?", a:"아니요. 전공 계열(인문·사회·이공 등)에 제한없이 자유롭게 주전공을 선택할 수 있습니다.", kw:["주전공","계열","제한없음","인문","사회","이공","계열제한"]},
-      {id:"7", q:"주전공 신청 자격은 어떻게 되나요?", a:"2025학번의 경우 직전학기 성적이 있는 상황에서 주전공 신청 학기에 재학 중이면 신청가능합니다. 다만, 주전공 신청 자격 심의(2026년 1월 예정) 시 누적 평점 평균이 2.0 이상이어야 주전공 배정이 확정됩니다.", kw:["주전공","신청자격","자격","평점","2.0","재학","심의","신청조건"]},
-      {id:"8", q:"1학년 공통 교육과정에서 F를 받으면 주전공 선택이 불가능한가요?", a:"2025학번의 경우 누적 평점 평균이 2.0 이상이라면 F를 취득하더라도 주전공 신청 및 배정이 가능합니다. 단, F를 취득한 한양인터칼리지 교양필수 과목은 졸업 전까지 재수강하여 반드시 학점을 취득해야 합니다.", kw:["F학점","F","주전공","재수강","평점","교양필수","낙제"]},
-      {id:"9", q:"주전공 신청 자격 심의 및 전공배정은 언제 이루어지나요?", a:"2025학번의 경우 2026년 1월에 주전공 신청 자격 요건 심의 및 배정이 진행됩니다.", kw:["주전공","신청자격","심의","배정","2026년1월","일정","언제"]},
+      {id:"7", q:"주전공 신청 자격은 어떻게 되나요?", a:"직전학기 성적이 있는 상황에서 주전공 신청 학기에 재학 중이면 신청가능합니다. 다만, 주전공 신청 자격 심의(2026년 1월 예정) 시 누적 평점 평균이 2.0 이상이어야 주전공 배정이 확정됩니다.", kw:["주전공","신청자격","자격","평점","2.0","재학","심의","신청조건"]},
+      {id:"8", q:"1학년 공통 교육과정에서 F를 받으면 주전공 선택이 불가능한가요?", a:"누적 평점 평균이 2.0 이상이라면 F를 취득하더라도 주전공 신청 및 배정이 가능합니다. 단, F를 취득한 한양인터칼리지 교양필수 과목은 졸업 전까지 재수강하여 반드시 학점을 취득해야 합니다.", kw:["F학점","F","주전공","재수강","평점","교양필수","낙제"]},
+      {id:"9", q:"주전공 신청 자격 심의 및 전공배정은 언제 이루어지나요?", a:"2026년 1월에 주전공 신청 자격 요건 심의 및 배정이 진행됩니다.", kw:["주전공","신청자격","심의","배정","2026년1월","일정","언제"]},
       {id:"10", q:"2025학번의 주전공 선택 일정은 어떻게 되나요?", a:"2025년 10월 30일(목)~11월 5일(수)이 주전공 신청 기간이며, 2026년 1월에 주전공 신청 자격 심의 후 최종 확정됩니다.", kw:["주전공","일정","10월","11월","신청기간","2025학번","언제","기간"]},
       {id:"11", q:"전공 설명회는 언제 진행되나요?", a:"2025년 10월 중 학과 교수님께 직접 듣는 전공설명회를 개최할 예정입니다.", kw:["전공설명회","설명회","일정","10월","학과","교수","언제"]},
       {id:"12", q:"다전공 선택 신청 일정은 언제인가요?", a:"2025년 11월 10일(월)~14일(금)로 예정되어 있으며, 자세한 사항은 한양대학교 포털 공지사항(https://portal.hanyang.ac.kr)에서 확인해 주세요.", kw:["다전공","일정","11월","신청기간","포털","언제","기간"]},
@@ -222,8 +222,8 @@
       {id:"32", q:"기초과학(MSC) 교과목에는 어떤 과목들이 포함되나요?", a:"미분적분학, 일반화학및실험, 일반물리학및실험 관련 교과목이 기초과학 교과목(MSC 교과목)에 포함됩니다.", kw:["기초과학","MSC","미분적분학","일반화학","일반물리학","수학","화학","물리학"]},
       {id:"33", q:"공과대학·자연과학대학 전공을 주전공으로 선택 시 기초과학(MSC) 교과목은 어떻게 인정되나요?", a:"기초과학 교과목(MSC 교과목)을 이수하더라도 선택한 주전공학과의 전공학점으로는 인정되지 않고 전체 졸업학점으로만 인정됩니다.", kw:["기초과학","MSC","공과대학","자연과학대학","학점인정","공대","자과대"]},
       {id:"34", q:"기초과학(MSC) 교과목이 아닌 전공기초필수과목은 전공학점으로 인정되나요?", a:"네. 기초과학(MSC) 교과목이 아닌 1학년 전공기초필수과목은 필수이수 조건은 아닙니다. 그렇지만 전공 배정 이후 기초과학(MSC)교과목을 제외한 1학년 전공기초필수 교과목을 이수하는 경우 주전공 이수학점 48학점에 포함됩니다. 전공 배정 이전에 전공기초필수 교과목을 포함한 전공교과목을 수강하는 경우, 전공 학점으로 인정이 되지 않는 점 유의해 주시기 바랍니다.", kw:["기초과학","MSC","전공기초필수","전공학점","학점인정","미리수강","배정전"]},
-      {id:"35", q:"졸업하려면 총 몇 학점을 이수해야 하나요?", a:"한양인터칼리지 학생은 주전공 종류와 상관없이 총 140학점 이상을 이수해야 졸업이 가능합니다.", kw:["졸업","총학점","140학점","졸업요건","졸업학점"]},
-      {id:"36", q:"주전공은 최소 몇 학점을 이수해야 하나요?", a:"한양인터칼리지 학생이라면, 주전공 정류와 상관없이 400단위 6학점을 포함하여 48학점(건축학부 제외)(주전공 전굥교과 최소이수학점) 이상을 이수해야 합니다.", kw:["주전공","최소학점","48학점","졸업요건","주전공학점"]},
+      {id:"35", q:"졸업하려면 총 몇 학점을 이수해야 하나요?", a:"한양인터칼리지 학생은 주전공 종류하 상관없이 총 140학점 이상을 이수해야 졸업이 가능합니다.", kw:["졸업","총학점","140학점","졸업요건","졸업학점"]},
+      {id:"36", q:"주전공은 최소 몇 학점을 이수해야 하나요?", a:"주전공 종류와 상관없이 해당 주전공 교육과정에서 48학점 이상을 이수해야 합니다.", kw:["주전공","최소학점","48학점","졸업요건","주전공학점"]},
       {id:"37", q:"주전공에서 400단위 과목은 몇 학점 이상 들어야 하나요?", a:"6학점 이상 이수해야 합니다.", kw:["주전공","400단위","6학점","고학년과목","고급과목"]},
       {id:"38", q:"한양인터칼리지 학생은 다전공을 반드시 이수해야 하나요?", a:"네. 한양인터칼리지 소속 학생은 어떤 주전공을 선택하더라도 반드시 부전공 이상을 1개 이상 이수해야 합니다.", kw:["다전공","부전공","필수","졸업요건","한양인터칼리지","의무"]},
       {id:"39", q:"한양인터칼리지 프로그램 교육과정을 반드시 이수해야 하나요?", a:"네. 한양인터칼리지학부 프로그램 교육과정 중 반드시 1개를 주전공 또는 다전공(부전공, 다중전공)으로 선택해야 합니다.", kw:["한양인터칼리지","프로그램","교육과정","필수","다전공","HIC"]},
@@ -315,9 +315,10 @@
     const tagBar    = document.getElementById('tagBar');
     const hideToggle= document.getElementById('hideToggle');
 
-    /* 전역 숨김 모드 상태 */
-    let HIDE_MODE = JSON.parse(localStorage.getItem('hideAnswers') || 'false');
-    if (hideToggle) hideToggle.checked = HIDE_MODE;
+    /* 전역 컴팩트 모드 상태 */
+    let COMPACT_MODE = JSON.parse(localStorage.getItem('compactMode') || 'false');
+    const compactToggle = document.getElementById('compactToggle');
+    if (compactToggle) compactToggle.checked = COMPACT_MODE;
     
     let TAG_MODE = 'or'; // 'or' 또는 'and'
     const tagModeToggle = document.getElementById('tagModeToggle');
@@ -436,62 +437,39 @@
         const card = document.createElement('article');
         card.className = 'card';
         card.id = `q${e.id}`;
-        card.setAttribute('data-blur', HIDE_MODE ? 'true' : 'false');
-        card.setAttribute('data-collapsed', HIDE_MODE ? 'false' : 'true');
+        card.setAttribute('data-collapsed', COMPACT_MODE ? 'true' : 'false');
 
         card.innerHTML = `
           <div class="qline">
             <span class="badge">Q${e.id}</span>
-            <h3 class="qtext" style="cursor:pointer" aria-expanded="${HIDE_MODE ? 'true' : 'false'}">${highlight(e.q, query)}</h3>
-            <span class="veil" role="button" title="답변 보기">👁 보기</span>
-            <span class="reveal" role="button" title="접기/펼치기">${HIDE_MODE ? '' : '▾ 펼치기'}</span>
+            <h3 class="qtext" style="cursor:pointer" aria-expanded="${COMPACT_MODE ? 'false' : 'true'}">${highlight(e.q, query)}</h3>
+            <span class="reveal" role="button" title="접기/펼치기">${COMPACT_MODE ? '▾ 펼치기' : '▴ 접기'}</span>
           </div>
-          <div class="answer" aria-hidden="${HIDE_MODE ? 'false' : 'true'}">${highlight(e.a, query)}</div>
+          <div class="answer" aria-hidden="${COMPACT_MODE ? 'true' : 'false'}">${highlight(e.a, query)}</div>
           <div class="tags">${e.tags.map(t=>`<span class="tag">${t}</span>`).join(' · ')}</div>
         `;
 
         const answerEl = card.querySelector('.answer');
         const revealBtn = card.querySelector('.reveal');
-        const veilBtn   = card.querySelector('.veil');
         const qtitle    = card.querySelector('.qtext');
+        const tagsEl    = card.querySelector('.tags');
 
         function syncCardView(){
-          if (HIDE_MODE){
-            card.setAttribute('data-blur','true');
-            card.setAttribute('data-collapsed','false');
-            answerEl.style.filter = 'blur(6px)';
-            answerEl.style.maxHeight = 'none';
-            if(revealBtn) revealBtn.style.display = 'none';
-            if(veilBtn) veilBtn.style.display   = 'inline-flex';
-            qtitle.setAttribute('aria-expanded','true');
-            answerEl.setAttribute('aria-hidden','false');
-          } else {
-            card.setAttribute('data-blur','false');
-            if(veilBtn) veilBtn.style.display   = 'none';
-            if(revealBtn) revealBtn.style.display = 'inline-flex';
-            answerEl.style.filter = 'none';
-            const collapsed = card.getAttribute('data-collapsed') === 'true';
-            answerEl.style.maxHeight = collapsed ? '0' : 'none';
-            if(revealBtn) revealBtn.textContent = collapsed ? '▾ 펼치기' : '▴ 접기';
-            qtitle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-            answerEl.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
-          }
+          const collapsed = card.getAttribute('data-collapsed') === 'true';
+          answerEl.style.maxHeight = collapsed ? '0' : 'none';
+          if(revealBtn) revealBtn.textContent = collapsed ? '▾ 펼치기' : '▴ 접기';
+          qtitle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+          answerEl.setAttribute('aria-hidden', collapsed ? 'true' : 'false');
         }
         syncCardView();
 
         function toggleAccordion(){
-          if (HIDE_MODE) return;
           const collapsed = card.getAttribute('data-collapsed') === 'true';
           card.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
           syncCardView();
         }
         qtitle.addEventListener('click', toggleAccordion);
         revealBtn?.addEventListener('click', toggleAccordion);
-
-        veilBtn?.addEventListener('click', ()=>{
-          answerEl.style.filter = 'none';
-          veilBtn.style.display = 'none';
-        });
 
         resultsEl.appendChild(card);
       }
@@ -514,7 +492,7 @@
         if(q.trim()) url.searchParams.set('q', q.trim()); else url.searchParams.delete('q');
         if(selectedTags.size) url.searchParams.set('tags', [...selectedTags].join(','));
         else url.searchParams.delete('tags');
-        if(HIDE_MODE) url.searchParams.set('hide','1'); else url.searchParams.delete('hide');
+        if(COMPACT_MODE) url.searchParams.set('compact','1'); else url.searchParams.delete('compact');
         history.replaceState(null,'',url.toString());
       }
     }
@@ -526,7 +504,7 @@
       qInput.value = q;
       const tagQuery = params.get('tags');
       if(tagQuery){ tagQuery.split(',').forEach(t=> selectedTags.add(t)); }
-      if(params.get('hide') === '1'){ HIDE_MODE = true; if(hideToggle) hideToggle.checked = true; }
+      if(params.get('compact') === '1'){ COMPACT_MODE = true; if(compactToggle) compactToggle.checked = true; }
     }
 
     initFromQuery();
@@ -542,9 +520,9 @@
       update();
     });
 
-    hideToggle?.addEventListener('change', ()=>{
-      HIDE_MODE = hideToggle.checked;
-      localStorage.setItem('hideAnswers', JSON.stringify(HIDE_MODE));
+    compactToggle?.addEventListener('change', ()=>{
+      COMPACT_MODE = compactToggle.checked;
+      localStorage.setItem('compactMode', JSON.stringify(COMPACT_MODE));
       update(false);
     });
 
