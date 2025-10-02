@@ -65,11 +65,12 @@
     /* Notice Box */
     .notice{margin-top:16px;padding:14px 18px;background:rgba(42,77,179,.08);border:1px solid rgba(42,77,179,.25);
       border-radius:12px;font-size:14px;line-height:1.7;color:var(--text);}
-    .notice strong{color:#5b8fff;font-weight:600;}
-    .notice a{color:#7ea4ff;text-decoration:none;font-weight:500;border-bottom:1px solid transparent;transition:border-color .2s;}
-    .notice a:hover{border-bottom-color:#7ea4ff;}
+    .notice strong{color:#2e3d86;font-weight:600;}
+    .notice a{color:#1a2d90;text-decoration:none;font-weight:500;border-bottom:1px solid transparent;transition:border-color .2s;}
+    .notice a:hover{border-bottom-color:#1a2d90;}
     .notice-item{margin:6px 0;padding-left:4px;}
     .notice-highlight{color:var(--brand);}
+    .pdf-links{display:flex;flex-direction:column;gap:4px;margin-top:4px;}
     
     @media (max-width: 768px) {
       .notice{padding:12px 14px;font-size:13px;margin-top:12px;line-height:1.6;}
@@ -162,8 +163,11 @@
           이 FAQ는 아래 전공선택 및 전공선택 후 졸업요건 관련 안내문을 바탕으로 2025학번 한정으로<br>키워드 기반 검색으로 제공됩니다.</div>
           
           <div class="notice-item"><strong>● 필독 안내문</strong><br>
-          <a href="assets/2025_major_selection_guide.pdf" target="_blank">2025학번 전공선택 및 전공선택 후 졸업 요건 가이드</a> · 
-          <a href="assets/2025_major_selection_FAQ.pdf" target="_blank">2025학번 전공 선택 및 졸업요건 관련 FAQ(전문)</a></div>
+          <div class="pdf-links">
+            <a href="assets/2025_major_selection_guide.pdf" target="_blank">2025학번 전공선택 및 전공선택 후 졸업 요건 가이드</a>
+            <a href="assets/2025_major_selection_FAQ.pdf" target="_blank">2025학번 전공 선택 및 졸업요건 관련 FAQ(전문)</a>
+          </div>
+          </div>
           
           <div class="notice-item"><strong>● 주의사항</strong><br>
           <span class="notice-highlight">반드시 위 두 안내문을 먼저 읽고 검색해 주세요.</span></div>
